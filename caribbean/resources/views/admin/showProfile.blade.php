@@ -18,7 +18,7 @@
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{ route('adminDashboard') }}" class="text-muted text-hover-primary">Dashboard</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -136,7 +136,7 @@
                     <!--begin::Row-->
                     <div class="row mb-7">
                         <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Firstname</label>
+                        <label class="col-lg-4 fw-semibold text-muted">Name</label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
@@ -145,17 +145,7 @@
                         <!--end::Col-->
                     </div>
                     <!--end::Row-->
-                    <!--begin::Input group-->
-                    <div class="row mb-7">
-                        <!--begin::Label-->
-                        <label class="col-lg-4 fw-semibold text-muted">Lastname</label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-8 d-flex align-items-center">
-                            <span class="fw-bold fs-6 text-gray-800 me-2"></span>
-                        </div>
-                        <!--end::Col-->
-                    </div>
+                    
                     <div class="row mb-7">
                         <!--begin::Label-->
                         <label class="col-lg-4 fw-semibold text-muted">Email
@@ -169,6 +159,21 @@
                         </div>
                         <!--end::Col-->
                     </div>
+
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-semibold text-muted">Contact Email
+                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                title="Email must be active"></i></label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 d-flex align-items-center">
+                            <span class="fw-bold fs-6 text-gray-800 me-2"></span>
+                            <span class="badge badge-success">Verified</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+
                     <div class="row mb-7">
                         <!--begin::Label-->
                         <label class="col-lg-4 fw-semibold text-muted">Country</label>
