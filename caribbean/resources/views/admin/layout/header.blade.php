@@ -147,7 +147,7 @@
 										<!--end::Menu separator-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5">
-											<a href="#" class="menu-link px-5">My Profile</a>
+											<a href="{{ route('admin.showprofile') }}" class="menu-link px-5">My Profile</a>
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
@@ -198,7 +198,7 @@
 										<!--end::Menu item-->
 										<!--begin::Menu item-->
 										<div class="menu-item px-5 my-1">
-											<a href="#" class="menu-link px-5">Edit Profile</a>
+											<a href="#" class="menu-link px-5">Change Password</a>
 										</div>
 										<!--end::Menu item-->
 										<!--begin::Menu item-->

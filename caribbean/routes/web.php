@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get('dashboard',[AdminController::class,'index'])->name('adminDashboard');
 Route::get('admin/login',[AdminLoginController::class,'loginPage'])->name('admin.login');
 Route::post('admin/login',[AdminLoginController::class,'login'])->name('admin.login.submit');
+Route::get('admin/profile',[AdminLoginController::class,'showProfile'])->name('admin.showprofile');

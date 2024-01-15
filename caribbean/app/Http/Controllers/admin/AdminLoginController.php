@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+/* Define Models */
 use App\Models\Admin;
 
 
@@ -50,5 +51,9 @@ class AdminLoginController extends Controller
         {
             return redirect()->route('admin.login')->withErrors($e->errors())->withInput();
         }
+    }
+    public function showProfile()
+    {
+        return view('admin.showProfile');
     }
 }
