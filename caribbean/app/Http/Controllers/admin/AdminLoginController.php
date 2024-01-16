@@ -26,24 +26,18 @@ class AdminLoginController extends Controller
             ]);
             $credentials = $request->only('email','password');
 
-            // Additional checks before attempting to log in
-            $user = Admin::where('email', $credentials['email'])->first();
-            // dd($user);
-            if(!$user)
-            {
-                throw ValidationException::withMessages([
-                    'email'=>[trans('auth.failed')],
-                ]);
-            }
+            // Use the admin guard for authentication
+            if(Auth::guard('admin')->attempt($credentials)){
 
-            // Use password_verify to check the hashed password
-            if (password_verify($credentials['password'], $user->password)) {
                 // Authentication successful
-                Auth::login($user);
+
+                //store admin ID in the session
+                session(['admin_id' => Auth::guard('admin')->user()->id]);
+
                 return redirect()->route('adminDashboard');
             }
 
-            // Incorrect password
+            // Incorrect email or  password
             throw ValidationException::withMessages([
                 'email' => [trans('auth.failed')],
             ]);
@@ -52,8 +46,5 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.login')->withErrors($e->errors())->withInput();
         }
     }
-    public function showProfile()
-    {
-        return view('admin.showProfile');
-    }
+   
 }
