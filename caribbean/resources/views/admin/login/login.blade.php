@@ -10,6 +10,10 @@ Dribbble: www.dribbble.com/keenthemes
 Like: www.facebook.com/keenthemes
 License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
 -->
+
+
+<!-- SweetAlert2 Laravel Wrapper -->
+@include('sweetalert::alert')
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../"/>
@@ -169,6 +173,19 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="{{asset('public/assets/js/custom/authentication/sign-up/general.js')}}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
+		<!-- SweetAlert2 -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	</body>
 	<!--end::Body-->
 </html>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            timer: 3000,
+            timerProgressBar: true,
+        });
+    </script>
+@endif

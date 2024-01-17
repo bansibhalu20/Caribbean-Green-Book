@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 @section('content')
 
+@php($admin = Auth::guard('admin')->user())
  <!--begin::Toolbar-->
  <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <!--begin::Toolbar container-->
@@ -25,7 +26,7 @@
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted text-hover-primary">show profile</a>
+                        <a href="{{ route('admin.showprofile') }}" class="text-muted text-hover-primary">show profile</a>
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
@@ -72,7 +73,7 @@
                                 style="background-image: url('{{ asset('public/assets/media/svg/avatars/blank.svg') }}');">
                                 <!--begin::Preview existing avatar-->
                                 <div class="image-input-wrapper w-125px h-125px">
-                                    <img src="{{ asset('storage/' . $user->image) }}" width="120px" height="120px" alt="Profile Image">
+                                    <img src="{{ asset('storage/app/public/' . $user->image) }}" width="120px" height="120px" alt="Profile Image">
 
                                 </div>
                                 <!--end::Preview existing avatar-->
@@ -211,5 +212,77 @@
         </div>
         <!--end::Content-->
     </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    $(document).ready(function() {
+        // Validate form on form submission
+        $('#submitBtn').on('click', function(event) {
+            event.preventDefault(); // Prevent default form submission
 
+            // Clear previous error messages
+            clearErrorMessages();
+
+            // Get form input values
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var contactemail = $('#contactEmail').val();
+            var address = $('#address').val();
+            var phone = $('#phone').val();
+          
+
+            // Perform validation
+            var isValid = true;
+
+            if (name.trim() === '') {
+                isValid = false;
+                $('#name-error').text('Name is required.');
+            }
+
+            if (email.trim() === '') {
+                isValid = false;
+                $('#email-error').text('Email is required.');
+            } else if (!isValidEmail(email)) {
+                isValid = false;
+                $('#email-error').text('Please enter a valid email.');
+            }
+
+            if (phone.trim() === '') {
+                isValid = false;
+                $('#phone-error').text('Phone number is required.');
+            } else if (!isValidPhone(phone)) {
+                isValid = false;
+                $('#phone-error').text('Please enter a valid phone number.');
+            }
+
+            
+
+            // If all fields are valid, submit the form
+            if (isValid) {
+                $('#profileForm').submit();
+            }
+        });
+
+        // Clear error messages
+        function clearErrorMessages() {
+            $('.error-msg').text('');
+        }
+
+        // Validate email
+        function isValidEmail(email) {
+            // You can use a regular expression or other methods to validate the email format
+            // For example, a simple regex to check for a valid email format:
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            return emailPattern.test(email);
+        }
+
+        // Validate phone number
+        function isValidPhone(phone) {
+            // You can use a regular expression or other methods to validate the phone number format
+            // For example, a simple regex to check for a valid phone number format:
+            var phonePattern = /^\d{10}$/;
+            return phonePattern.test(phone);
+        }
+    });
+</script> -->
 @endsection

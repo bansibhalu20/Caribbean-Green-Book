@@ -1,6 +1,8 @@
 @extends('admin.layout.app')
 @section('content')
 
+@php($admin = Auth::guard('admin')->user())
+
  <!--begin::Navbar-->
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -46,7 +48,7 @@
 
                     <div class="me-7 mb-4">
                         <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                        <img src="{{ asset('storage/' . $admin->image) }}" width="120px" height="120px" alt="Profile Image"> 
+                             <img src="{{ asset('storage/app/public/' . $admin->image) }}" width="120px" height="120px" alt="Profile Image"> 
                             <div
                                 class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px">
                             </div>
@@ -77,29 +79,10 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </a>
-                                    <a class="btn btn-sm btn-light-success fw-bold ms-2 fs-8 py-1 px-3"
-                                        data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade to
-                                        Pro</a>
+                                   
                                 </div>
                                 <!--end::Name-->
-                                <!--begin::Info-->
-                                <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
-                                    <a class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
-                                        <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
-                                        <span class="svg-icon svg-icon-4 me-1">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path opacity="0.3"
-                                                    d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z"
-                                                    fill="currentColor" />
-                                                <path
-                                                    d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z"
-                                                    fill="currentColor" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg mailto:icon--></a>
-                                </div>
-                                <!--end::Info-->
+                                
                             </div>
                             <!--end::User-->
 
