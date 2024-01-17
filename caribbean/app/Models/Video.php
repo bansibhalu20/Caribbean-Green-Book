@@ -12,9 +12,7 @@ class Video extends Model
     protected $table = 'tbl_videos';
 
     // The attributes that are mass assignable.
-    protected $fillable = [
-        'title','image','link',
-    ];
+    protected $fillable = ['title','link','image',];
 
     // Timestamps
     public $timestamps = true;

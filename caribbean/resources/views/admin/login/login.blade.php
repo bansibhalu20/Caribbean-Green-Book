@@ -44,7 +44,7 @@ License: For each use you must have a valid license purchased only from above li
 			<!--begin::Page bg image-->
 			<style>
             body {
-                background-image: url('{{ asset('public/assets/media/auth/bg4.jpg') }}');
+                background-image: url('{{ asset("public/assets/media/auth/bg4.jpg") }}');
             }
 
             [data-theme="dark"] body {
