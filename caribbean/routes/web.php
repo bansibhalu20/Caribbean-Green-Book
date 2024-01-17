@@ -27,5 +27,6 @@ Route::post('admin/login',[AdminLoginController::class,'login'])->name('admin.lo
 Route::get('admin/profile',[AdminLoginController::class,'showProfile'])->name('admin.showprofile');
 
 //Business Module
-Route::get('admin/business-create', [AdminBusinessController::class, 'create'])->name('admin.business-create');
-Route::post('admin/business-create',[AdminBusinessController::class,'store'])->name('add.business.store');
+Route::get('admin/business/create', [AdminBusinessController::class, 'create'])->name('admin.business.create');
+Route::post('admin/business/create',[AdminBusinessController::class,'store'])->name('admin.business.store');
+Route::get('admin/business/show', [AdminBusinessController::class, 'show'])->name('admin.business.show');
