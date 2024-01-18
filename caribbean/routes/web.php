@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminLoginController;
-use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminBusinessController;
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +35,9 @@ Route::post('admin/login', [AdminLoginController::class, 'login'])->name('admin.
 Route::get('admin/logout', [AdminLoginController::class, 'getLogout'])->name('logout');
 
 //Category module route
-Route::get('admin/view-cate',[CategoryController::class,'index'])->name('admin.viewcate');
-Route::get('admin/add-cate',[CategoryController::class,'addCategory'])->name('admin.addcate');
+Route::get('admin/view-category',[AdminCategoryController::class,'index'])->name('admin.viewcate');
+Route::get('admin/addcate',[AdminCategoryController::class,'create'])->name('admin.addcate');
+Route::post('admin/add-cate',[AdminCategoryController::class,'store'])->name('admin.addcate.store');
 
 
 //Business Module

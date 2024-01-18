@@ -13,7 +13,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Customer List</h1>
+                            Category List</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -28,9 +28,9 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted"> <a href=""
+                            <li class="breadcrumb-item text-muted"> <a href="{{ route('admin.viewcate') }}"
                                     class="text-muted text-hover-primary">Manage
-                                    Customer</a></li>
+                                    Category</a></li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -110,7 +110,8 @@
                                                     value="1" />
                                             </div>
                                         </th>
-                                        <th class="min-w-50px">Category</th>
+                                        <!-- <th class="min-w-50px">Category</th> -->
+                                        <th class="min-w-100px">Name</th>
                                         <th class="min-w-100px">Image</th>
                                         <th class=" min-w-70px">Description</th>
                                         <th class="min-w-90px">Actions</th>
@@ -120,7 +121,21 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="text-gray-600 fw-semibold">
-                                <tbody class="text-gray-600 fw-semibold">
+                                    @foreach($category as $cate)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ $cate->title }}</td>
+                                        <td>
+                                            @if(!empty($cate->image))
+                                                <img src="{{ asset('storage/app/public/' . $cate->image) }}" height="50px" width="50px" style="border-radius: 10px;" alt="">
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
+                                        <td>{{ $cate->description }}</td>
+                                        <td></td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                                 <!--end::Table body-->
                             </table>

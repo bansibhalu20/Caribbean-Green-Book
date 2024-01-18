@@ -29,7 +29,7 @@
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="" class="text-muted text-hover-primary">Manage
+                            <a href="{{ route('admin.viewcate') }}" class="text-muted text-hover-primary">Manage
                                 Categories</a>
                         </li>
                         <!--end::Item-->
@@ -58,7 +58,7 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <!--begin::Form-->
                 <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" upstream
-                    action="" method="post"
+                    action="{{ route('admin.addcate.store') }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <!--begin::Aside column-->
@@ -168,19 +168,23 @@
                                             <!--begin::Input group-->
                                             <div class="mb-10 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required form-label">Select Category</label>
+                                                <label class="form-label">Select Category</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
 
                                                 <select class="form-select mb-2" data-control="select2"
                                                     data-placeholder="Select a Category" data-hide-search="true"
-                                                    name="cate_id" id="category">
-                                                    <option></option>
+                                                    name="parent_cate_id" id="category">
+                                                    <option value="">Select Category</option> 
                                                     
+                                                    {{-- Use a loop to dynamically generate options --}}
+                                                    @foreach($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                                    @endforeach
                                                 </select>
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Enter the category</div>
+                                                <div class="text-muted fs-7">Select the Parent category</div>
 
                                                 <!--end::Description-->
                                             </div>
@@ -195,11 +199,11 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="text" name="cate_name" id="cate_name"
-                                                    class="form-control mb-2" placeholder="Product name" value="" />
+                                                    class="form-control mb-2" placeholder="category name" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                                 <div class="text-muted fs-7">A category name is required.</div>
-                                               
+                                                
                                                 <!--end::Description-->
                                             </div>
                                         </div>
