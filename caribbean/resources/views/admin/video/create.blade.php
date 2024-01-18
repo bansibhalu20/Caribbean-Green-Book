@@ -80,10 +80,6 @@
                                             </div>
                                         </div>
                                         <div class="card-body pt-0">
-                                            <!-- <div class="mb-10 fv-row">
-                                                <label class="required form-label">Business Name</label>
-                                                <input type="text" name="name" id="name" class="form-control mb-2" placeholder="Business name" value="" />
-                                            </div> -->
                                             
                                             <!-- Add Link  -->
                                             <div class="mb-10 fv-row">
