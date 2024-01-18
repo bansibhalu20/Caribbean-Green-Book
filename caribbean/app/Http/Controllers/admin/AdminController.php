@@ -24,6 +24,9 @@ class AdminController extends Controller
             $admin = Auth::guard('admin')->user();
             return view('admin.showProfile',['admin'=>$admin]);
         }catch(Exception $e){
+
+            // Log the exception with today's date in the daily log channel
+            Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
 
@@ -35,6 +38,8 @@ class AdminController extends Controller
             return view('admin.editprofile',compact('user'));
         }catch(Exception $e)
         {
+            // Log the exception with today's date in the daily log channel
+            Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
             return redirect()->back()->with('error',$e->getMessage());
         }
     }
@@ -75,6 +80,8 @@ class AdminController extends Controller
             return redirect()->route('admin.showprofile')->with('success','Profile Update Successfully...');
         }catch(Exception $e)
         {
+            // Log the exception with today's date in the daily log channel
+            Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
