@@ -35,6 +35,7 @@ return new class extends Migration
             $table->text('hear_about_us');
             $table->unsignedBigInteger('category_id');
             $table->enum('status', ['active', 'inactive']);
+            $table->string('business_owner_name');
             $table->timestamps();
 
             $table->foreign('country_id')->references('id')->on('tbl_country')->onDelete('cascade');
