@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminLoginController;
-use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminBusinessController;
+use App\Http\Controllers\admin\AdminBusinessReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,10 +35,15 @@ Route::get('admin/login', [AdminLoginController::class, 'loginPage'])->name('adm
 Route::post('admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
 Route::get('admin/logout', [AdminLoginController::class, 'getLogout'])->name('logout');
 
-//Category module route
-Route::get('admin/view-cate',[CategoryController::class,'index'])->name('admin.viewcate');
-Route::get('admin/add-cate',[CategoryController::class,'addCategory'])->name('admin.addcate');
+//Category Module 
+Route::get('admin/view-category',[AdminCategoryController::class,'index'])->name('admin.viewcate');
+Route::get('admin/addcate',[AdminCategoryController::class,'create'])->name('admin.addcate');
+Route::post('admin/add-cate',[AdminCategoryController::class,'store'])->name('admin.addcate.store');
+Route::get('admin/edit-cate/{id}',[AdminCategoryController::class,'editCategory'])->name('admin.category.edit');
+Route::put('admin.update-cate/{id}',[AdminCategoryController::class,'updateCategory'])->name('admin.category.update');
 
+//Business Review Module
+Route::get('admin/busi-review',[AdminBusinessReviewController::class,'index'])->name('admin.busi-review');
 
 //Business Module
 Route::get('admin/business/create', [AdminBusinessController::class, 'create'])->name('admin.business.create');
