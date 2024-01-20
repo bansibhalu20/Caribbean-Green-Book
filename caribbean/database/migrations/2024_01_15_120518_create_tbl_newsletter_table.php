@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_newsletter', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->nullable(false); // Set NOT NULL constraint on email column
+            $table->string('email')->nullable(); // Set NOT NULL constraint on email column
             $table->timestamps();
         });
     }

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tbl_social_media', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable(false); // Set NOT NULL constraint on name column
-            $table->string('type')->nullable(false); // Set NOT NULL constraint on type column
-            $table->string('url')->nullable(false); // Set NOT NULL constraint on url column
+            $table->string('name')->nullable(); // Set NOT NULL constraint on name column
+            $table->string('type')->nullable(); // Set NOT NULL constraint on type column
+            $table->string('url')->nullable(); // Set NOT NULL constraint on url column
             $table->unsignedBigInteger('business_id');
             $table->timestamps();
 

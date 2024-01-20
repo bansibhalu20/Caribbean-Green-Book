@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tbl_business_review', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('email')->nullable();
             $table->unsignedBigInteger('business_id');
-            $table->integer('star');
-            $table->text('description');
+            $table->integer('star')->nullable();
+            $table->text('description')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
 
