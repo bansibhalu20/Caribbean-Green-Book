@@ -100,9 +100,9 @@
                                         <button id="deleteSelected" class="btn btn-danger" style="display: none;">Delete
                                             Selected</button>
                                     </div>
-                                    <div class="mw-150px">
-                                        <a href="" class="btn btn-primary ">Add
-                                            Product</a>
+                                    <div class="mw-200px">
+                                        <a href="{{route('admin.business-create')}}" class="btn btn-primary ">Add
+                                            Business</a>
                                     </div>
                                 </div>
                             </div>
@@ -128,10 +128,11 @@
                                         </th>
                                         <th class="min-w-50px ">Logo</th>
                                         <th class="min-w-100px">Business Name</th>
-                                        <th class="min-w-100px">Website</th>
-                                        <th class="min-w-125px">Country</th>
-                                        <th class="min-w-100px">Tax Type</th>
-                                        <th class="min-w-100px">Tax Percentage</th>
+                                        <th class="min-w-100px">Owner</th>
+                                        <th class="min-w-125px">Email</th>
+                                        <th class="min-w-100px">Phone</th>
+                                        <th class="min-w-100px">How Old</th>
+                                        <th class="min-w-100px">Industry</th>
                                         <th class="min-w-100px">Status</th>
                                         <th class="min-w-100px">Action</th>
                                     </tr>
@@ -143,12 +144,28 @@
             <tr>
                 <td>{{-- Display the logo, if applicable --}}</td>
                 <td>{{ $business->name }}</td>
-                <td>{{ $business->website }}</td>
-                <td>{{ $business->country_name }}</td>
-                <td>{{ $business->tax_type }}</td>
-                <td>{{ $business->tax_percentage }}</td>
+                <td>{{ $business->business_owner_name }}</td>
+                <td>{{ $business->email}}</td>
+                <td>{{ $business->phone}}</td>
+                <td>{{ $business->how_old_ur_business}}</td>
+                <td>{{ $business->business_industry}}</td>
                 <td>{{ $business->status }}</td>
                 <td>{{-- Action buttons, if applicable --}}</td>
+                <td></td>
+                <td><div class="dropdown menu-item px-3">
+                                <button class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
+                                <div class="dropdown-menu dropdown-menu-endmenu-item px-3">
+                                <div class="menu-item px-3">
+                                <a class=" menu-link px-3 text-gray-600 text-hover-primary" href="#">Edit</a>
+                                </div>
+                                <div class="menu-item px-3">
+                                <form id="delete-form-' + full.id + '" action="business/destroy/
+                                '" method="POST">
+                                <a class="menu-link px-3 text-gray-600 text-hover-primary" onclick="showConfirmDialog(event)" data-product-id="' ">Delete</a>
+                                </form>
+                                </div>
+                                </div>
+                                </div></td>
             </tr>
         @endforeach
     </tbody>

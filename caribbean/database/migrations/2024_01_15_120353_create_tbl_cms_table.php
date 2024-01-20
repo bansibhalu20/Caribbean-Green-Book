@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_cms', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable(false); // Set NOT NULL constraint on title column
+            $table->string('title')->nullable(); // Set NOT NULL constraint on title column
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

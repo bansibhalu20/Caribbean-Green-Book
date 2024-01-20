@@ -8,6 +8,8 @@ use App\Models\Business;
 use App\Models\Country;
 use App\Models\Category;
 use App\Models\Plan;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert; 
 class AdminBusinessController extends Controller
 {
     public function create()
@@ -23,7 +25,7 @@ class AdminBusinessController extends Controller
         $business->name = $request->input('name');
         $business->email = $request->input('email');
         $business->website = $request->input('site');
-        $business->business_owner_name = $request->input('business_owner_name');
+        $business->business_owner_name = $request->input('owner_name');
         $business->phone = $request->input('phone1');
         $business->phone2 = $request->input('phone2');
         $business->zipcode = $request->input('zip_code');
@@ -31,15 +33,24 @@ class AdminBusinessController extends Controller
         $business->how_old_ur_business = $request->input('how_old_ur_business');
         $business->description = $request->input('description');
         $business->hear_about_us = $request->input('about_us');
-        $business->image = $request->input('image');
         $business->category_id = $request->input('category');   
         $business->plan_id = $request->input('plan');
         $business->business_industry = $request->input('business_industry');
         $business->is_felony = $request->input('is_felony');
         $business->country_id = $request->input('country');
         $business->state = $request->input('state');
-        $business->city = $request->input('city');  
+        $business->city = $request->input('city'); 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = 'admin/business_image/' . $file->getClientOriginalName();   
+            // Move the uploaded file to the public disk
+            $file->storeAs('public', $fileName);        
+            // Update the image attribute with the file path
+            $business->image = $fileName;
+        }
+         
         $business->save();
+        return redirect(route('admin.business-show'));
     }
 
     public function show()
@@ -49,6 +60,15 @@ class AdminBusinessController extends Controller
             ->get();
     
         return view('admin.business.view', compact('businesses'));
+    }
+
+    public function edit($id)
+    {
+        $busi = Business::find($id);
+        $data['countries'] = Country::all();
+        $data['categories']=Category::all();
+        $data['plan']=Plan::all();
+        return view('admin.business.edit',compact('busi','id'),$data);
     }
     
 }
