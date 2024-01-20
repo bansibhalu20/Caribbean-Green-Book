@@ -140,8 +140,8 @@
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="category" id="category">
-                                        <option>Category</option>
-                                        @foreach($category as $list1)
+                                        <option value="{{$busi->Category->id}}">{{$busi->Category->title}}</option>
+                                        @foreach($categories as $list1)
                                             <option value="{{$list1->id}}">{{$list1->title}}</option>
                                         @endforeach
                                     </select>
@@ -162,7 +162,7 @@
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="plan" id="plan">
-                                        <option value="">Plan</option>
+                                        <option value="{{$busi->Plan->id}}">{{$busi->Plan->name}}</option>
                                         @foreach($plan as $list2)
                                             <option value="{{$list2->id}}">{{$list2->name}}</option>
                                         @endforeach
@@ -229,8 +229,8 @@
                                     <!--begin::Select2-->
                                     <select class="form-control form-select" name="country" id="country"
                                         data-placeholder="Select a country">
-                                        <option value="">Country</option>
-                                        @foreach($name as $list)
+                                        <option value="{{$busi->Country->id}}">{{$busi->Country->name}}</option>
+                                        @foreach($countries as $list)
                                             <option value="{{$list->id}}">{{$list->name}}</option>
                                         @endforeach
                                     </select>
@@ -244,11 +244,11 @@
                                     <!--end::Select store template-->
                                      <!--begin::Input-->
                                      <input type="text" name="state" id="state" class="form-control mb-2" 
-                                     placeholder="State" value="" /> <br>
+                                     placeholder="State" value="{{$busi->state}}" /> <br>
                                     <!--end::Input--> 
                                     <label class="form-label manager-code required">City</label>
                                     <input type="text" name="city" class="form-control mb-2 only-string-values"
-                                        id="city" placeholder="City">
+                                        id="city" placeholder="City" value="{{$busi->city}}">
                                 </div>
                                 <!--end::Card body-->
                             </div>
@@ -260,7 +260,7 @@
                                     <!--begin::label user-->
                                     <label class="form-label manager-code required">Is caribbean owner?</label>
                                     <select class="form-control form-select" name="tax_type" id="state">
-                                        <option value="">Select Option</option>
+                                        <option>{{$busi->is_caribbean->owned}}</option>
                                         <option value="yes">Yes</option>
                                         <option value="no">No</option>
                                     </select><br>

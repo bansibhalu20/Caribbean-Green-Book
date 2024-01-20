@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_business_image', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('business_id');
-            $table->string('image')->nullable(false); // Set NOT NULL constraint on image column
+            $table->string('image')->nullable(); // Set NOT NULL constraint on image column
             $table->timestamps();
 
             $table->foreign('business_id')->references('id')->on('tbl_business')->onDelete('cascade');

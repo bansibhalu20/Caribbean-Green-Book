@@ -15,15 +15,15 @@ return new class extends Migration
         Schema::create('tbl_country', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('currency_name');
-            $table->string('currency_symbol');
-            $table->string('currency_code');
-            $table->string('iso_alpha2');
-            $table->string('iso_alpha3');
-            $table->string('phone_code');
-            $table->string('iso_numeric');
-            $table->string('flag');
-            $table->integer('country_code');
+            $table->string('currency_name')->nullable();
+            $table->string('currency_symbol')->nullable();
+            $table->string('currency_code')->nullable();
+            $table->string('iso_alpha2')->nullable();
+            $table->string('iso_alpha3')->nullable();
+            $table->string('phone_code')->nullable();
+            $table->string('iso_numeric')->nullable();
+            $table->string('flag')->nullable();
+            $table->integer('country_code')->nullable();
             $table->timestamps();
         });
     }

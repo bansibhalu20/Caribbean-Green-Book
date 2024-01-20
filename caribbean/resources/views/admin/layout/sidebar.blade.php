@@ -44,7 +44,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span>
-                                <span class="menu-title">Dashboards</span>
+                                <span class="menu-title">Dashboard</span>
                                
                             </span>
                             <!--end:Menu link-->
