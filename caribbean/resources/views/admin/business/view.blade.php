@@ -156,7 +156,7 @@
                                 <button class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
                                 <div class="dropdown-menu dropdown-menu-endmenu-item px-3">
                                 <div class="menu-item px-3">
-                                <a class=" menu-link px-3 text-gray-600 text-hover-primary" href="#">Edit</a>
+                                <a class=" menu-link px-3 text-gray-600 text-hover-primary" href="{{ route('admin.business-edit',['id'=>$business->id]) }}">Edit</a>
                                 </div>
                                 <div class="menu-item px-3">
                                 <form id="delete-form-' + full.id + '" action="business/destroy/
