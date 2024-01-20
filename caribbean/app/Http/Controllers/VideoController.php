@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use DataTables;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Video;
@@ -23,6 +23,15 @@ class VideoController extends Controller
         }   
     }
 
+    public function getDataTables()
+    {
+        dd('Inside getDataTables');
+    $videos = Video::select(['id', 'title', 'image', 'link', 'action'])->get();
+
+    return response()->json(['data' => $videos]);
+    }
+
+
     public function showCreateView()
     {
         try {
@@ -30,7 +39,7 @@ class VideoController extends Controller
         } catch (\Exception $e) {
             // Handle the exception
             Alert::error('Error', 'An error occurred while loading the create view.');
-            return redirect()->back(); // Redirect back previous page
+            return redirect()->back();
         }
     }
 
@@ -40,7 +49,7 @@ class VideoController extends Controller
             $request->validate([
                 'title' => 'required|max:255',
                 'link' => 'required|url|regex:/^https?:\/\/\S+$/i',
-                'image' => 'image|mimes:png,jpg,jpeg|max:2048',
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             ], [
                 'title.required' => 'The title field is required.',
                 'title.max' => 'The title must not exceed 255 characters.',
@@ -101,7 +110,7 @@ class VideoController extends Controller
             $request->validate([
                 'title' => 'required|max:255',
                 'link' => 'required|url|regex:/^https?:\/\/\S+$/i',
-                'image' => 'image|mimes:png,jpg,jpeg|max:2048',
+                'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
             ], [
                 'title.required' => 'The title field is required.',
                 'title.max' => 'The title must not exceed 255 characters.',

@@ -29,14 +29,16 @@ License: For each use you must have a valid license purchased only from above li
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Vendor Stylesheets(used by this page)-->
-		<link href="{{asset('public/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<!-- <link href="{{asset('public/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" /> -->
 		<link href="{{asset('public/assets/plugins/custom/vis-timeline/vis-timeline.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{{asset('public/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('public/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
-		
+		<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 
 	</head>
 	<!--end::Head-->
