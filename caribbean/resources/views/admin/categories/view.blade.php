@@ -84,7 +84,7 @@
                                                     Selected</button>
                                             </div>
                                             <div class="mw-150px w-100">
-                                                <a href="{{ route('admin.addcate') }}" class="btn btn-primary" style="width:150px;">Add Customer</a>
+                                                <a href="{{ route('admin.addcate') }}" class="btn btn-primary" style="width:150px;">Add Category</a>
                                             </div>
                                         </div>
                                     </div>
@@ -127,13 +127,14 @@
                                         <td>{{ $cate->title }}</td>
                                         <td>
                                             @if(!empty($cate->image))
-                                                <img src="{{ asset('storage/app/public/' . $cate->image) }}" height="50px" width="50px" style="border-radius: 10px;" alt="">
+                                                <img src="{{ asset('storage/app/public/' . $cate->image) }}" height="50px" width="50px" style="border-radius: 30px;" alt="">
                                             @else
                                                 No Image
                                             @endif
                                         </td>
                                         <td>{{ $cate->description }}</td>
-                                        <td></td>
+                                        <td>
+                                            <a href="{{ route('admin.category.edit',['id'=>$cate->id]) }}">Edit</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
