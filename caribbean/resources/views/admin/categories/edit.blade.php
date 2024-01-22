@@ -55,7 +55,7 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Form-->
                     <form id="kt_account_profile_details_form" class="form d-flex flex-column flex-lg-row" upstream
-                        name="myForm" action="{{ route('admin.category.update',['id'=>$category->id]) }}" method="POST"
+                        name="myForm" action="{{ route('admin.category-update',['id'=>$category->id]) }}" method="POST"
                         enctype="multipart/form-data" >
                         @method('PUT')
                         @csrf
@@ -231,8 +231,8 @@
                             </div>
                             <!--end::General options-->
         
-                        </div>
                             </div>
+                     </div>
                             <!--end::Tab pane-->
 
                             <div class="d-flex justify-content-end mt-5">

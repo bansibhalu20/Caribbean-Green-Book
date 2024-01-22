@@ -8,6 +8,7 @@
 		session(['image' => $admin->image]);
 	}
 @endphp
+
 <!-- SweetAlert2 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @include('sweetalert::alert')						

@@ -31,7 +31,7 @@
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('adminDashboard') }}">
+                            <span class="menu-link">
                                 <span class="menu-icon">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -53,7 +53,9 @@
                          <!--begin:Menu item-->
                          <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ url('admin/viewcate') }}">
+                            <a class="menu-link"
+                                href="{{ route('admin.viewcate') }}" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                data-bs-dismiss="click" data-bs-placement="right">
                                 <span class="menu-icon">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                     <span class="svg-icon svg-icon-2">
@@ -75,7 +77,7 @@
                          <!--begin:Menu item-->
                          <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
                             <!--begin:Menu link-->
-                            <a class="menu-link" href="">
+                            <span class="menu-link">
                                 <span class="menu-icon">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                     <span class="svg-icon svg-icon-2">
