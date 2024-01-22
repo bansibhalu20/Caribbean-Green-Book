@@ -7,18 +7,25 @@
             <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                        Business Form</h1>
+                       Video Form</h1>
 
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                            <a href="#" class="text-muted text-hover-primary">Dashboard</a>
+                            <a href="{{route('adminDashboard')}}" class="text-muted text-hover-primary">Dashboard</a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            <a href="#" class="text-muted text-hover-primary">Add video</a>
+                            <a href="{{route('admin.video.add')}}" class="text-muted text-hover-primary">Add video</a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                        </li>
+                        <li class="breadcrumb-item text-dark">
+                            Video Form
                         </li>
                     </ul>
                 </div>
@@ -26,8 +33,7 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-            <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
-
+                <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10"> 
                         <div class="card card-flush py-4">   
@@ -109,6 +115,7 @@
                         </div>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>

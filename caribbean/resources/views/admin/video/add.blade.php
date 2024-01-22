@@ -24,19 +24,20 @@
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                            <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                              <!--begin::Item-->
+                              <li class="breadcrumb-item text-muted">
+                                <a href="{{route('adminDashboard')}}" class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item">
+                            <li class="breadcrumb-item text-muted">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted"> 
-                                <a href="" class="text-muted text-hover-primary">Manage video</a></li>
+                            <li class="breadcrumb-item text-dark">
+                                Video List
+                            </li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -57,14 +58,11 @@
                             <div class="mb-2" id="searchform">
                                 <div class="row ">
                                     <div class="col-lg-4 mb-lg-0 mb-6 p-2">
-                                        <label style="font-size: 14px;">Link:</label>
-                                        <input type="text" class="form-control datatable-input" id="search_link" name="search_link" placeholder="Search link" data-col-index="2">
+                                        <label style="font-size: 14px;">Search box:</label>
+                                        <input type="text" class="form-control datatable-input" id="search_link" name="search_link" placeholder="Search link or Title" data-col-index="2">
                                     </div>
 
-                                    <div class="col-lg-4 mb-lg-0 mb-6 p-2">
-                                        <label style="font-size: 14px;">Title:</label>
-                                        <input type="text" class="form-control datatable-input" id="search_Title" name="search_Title" placeholder="Search Title" data-col-index="2">
-                                    </div>
+                                    
                                 </div>
                                 <div class="row mt-5">
                                     <div class="col-md-4">
@@ -176,7 +174,7 @@
     </div>
     <!--end:::Main-->
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <!-- Include DataTables -->
     <script>
@@ -193,61 +191,61 @@
             });
         });
 
-    $(document).ready(function () {
-        // DataTable
-        var table = $('#kt_ecommerce_video_table').DataTable({
-            searching: true, // Enable searching
-            paging: true,// Enable pagination
-            pageLength: 5,  // Define the number of rows to display per page
-            // Define column definitions (if needed)
-            columnDefs: [
-                { targets: [0], searchable: false, orderable: false }
-            ]
+        $(document).ready(function () {
+            // DataTable
+            var table = $('#kt_ecommerce_video_table').DataTable({
+                searching: true, // Enable searching
+                paging: true,// Enable pagination
+                pageLength: 5,  // Define the number of rows to display per page
+                // Define column definitions (if needed)
+                columnDefs: [
+                    { targets: [0], searchable: false, orderable: false }
+                ]
+            });
+
+            // Add search functionality to individual columns (if needed)
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change clear', function () {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+            
+            // Add event listener to handle the "Delete Selected" button
+            $('#deleteSelected').on('click', function () {
+                var selectedRows = table.rows({ selected: true }).data().toArray();
+                // Implement your logic to delete selected rows
+                console.log(selectedRows);
+            });
+
+            // Add event listener to handle the "Search" button
+            $('#kt_search').on('click', function () {
+                // Get the values from the input fields
+                var searchLinkValue = $('#search_link').val();
+                var searchTitleValue = $('#search_Title').val();
+
+                // Set the search values in the input fields
+                $('#search_link').val(searchLinkValue);
+                $('#search_Title').val(searchTitleValue);
+
+                // Trigger the search
+                table.search(searchLinkValue).columns().search(searchTitleValue).draw();
+                // Implement additional search logic if needed
+            });
+
+            // Add event listener to handle the "Reset" button
+            $('#kt_reset').on('click', function () {
+                // Reset the input fields
+                $('#search_link, #search_Title').val('');
+                // Trigger the reset
+                table.search('').columns().search('').draw();
+                // Implement additional reset logic if needed
+            });
         });
-
-        // Add search functionality to individual columns (if needed)
-        table.columns().every(function () {
-        var that = this;
-
-        $('input', this.header()).on('keyup change clear', function () {
-            if (that.search() !== this.value) {
-                that.search(this.value).draw();
-            }
-        });
-    });
-
-    // Add event listener to handle the "Delete Selected" button
-    $('#deleteSelected').on('click', function () {
-        var selectedRows = table.rows({ selected: true }).data().toArray();
-        // Implement your logic to delete selected rows
-        console.log(selectedRows);
-    });
-
-    // Add event listener to handle the "Search" button
-    $('#kt_search').on('click', function () {
-        // Get the values from the input fields
-        var searchLinkValue = $('#search_link').val();
-        var searchTitleValue = $('#search_Title').val();
-
-        // Set the search values in the input fields
-        $('#search_link').val(searchLinkValue);
-        $('#search_Title').val(searchTitleValue);
-
-        // Trigger the search
-        table.search(searchLinkValue).columns().search(searchTitleValue).draw();
-        // Implement additional search logic if needed
-    });
-
-    // Add event listener to handle the "Reset" button
-    $('#kt_reset').on('click', function () {
-        // Reset the input fields
-        $('#search_link, #search_Title').val('');
-        // Trigger the reset
-        table.search('').columns().search('').draw();
-        // Implement additional reset logic if needed
-    });
-    });
-</script>
+    </script>
   
   
    
