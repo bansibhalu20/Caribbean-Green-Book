@@ -26,7 +26,6 @@ class AdminVideoController extends Controller
 
     public function getDataTables()
     {
-        // dd('Inside getDataTables');
     $videos = Video::select(['id', 'title', 'image', 'link', 'action'])->get();
 
     return response()->json(['data' => $videos]);
@@ -38,7 +37,7 @@ class AdminVideoController extends Controller
         try {
             return view('admin.video.create');
         } catch (\Exception $e) {
-            // Handle the exception
+            // Handle the exception here
             Alert::error('Error', 'An error occurred while loading the create view.');
             return redirect()->back();
         }
