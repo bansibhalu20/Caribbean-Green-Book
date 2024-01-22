@@ -10,7 +10,7 @@
                        Video Form</h1>
 
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <li class="breadcrumb-item text-muted">
+                        <li class="breadcrumb-item text-muted">
                             <a href="{{route('adminDashboard')}}" class="text-muted text-hover-primary">Dashboard</a>
                         </li>
 
@@ -21,7 +21,6 @@
                             <a href="{{route('admin.video.add')}}" class="text-muted text-hover-primary">Add video</a>
                         </li>
 
-                        <!-- Add breadcrumb for Video Form -->
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
@@ -34,8 +33,7 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-            <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
-
+                <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10"> 
                         <div class="card card-flush py-4">   
@@ -117,6 +115,7 @@
                         </div>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
