@@ -53,7 +53,7 @@
                                     
                                     <div class="col-lg-4  mb-lg-0 mb-6 p-2">
                                         <label style="font-size: 14px;">Category</label>
-                                        <select class="form-control form-select" name="user_name" id="cate_name"
+                                        <select class="form-control form-select" name="cate_name" id="cate_name"
                                             data-col-index="4">
                                             <option value="">--Select--</option>
                                            
@@ -134,8 +134,9 @@
                                         </td>
                                         <td>{{ $cate->description }}</td>
                                         <td>
-                                            <a href="{{ route('admin.category.edit',['id'=>$cate->id]) }}">Edit</a></td>
-                                    </tr>
+                                            <a href="{{ route('admin.category-edit',['id'=>$cate->id]) }}" class="btn-info btn btn-sm btn-icon"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.category-delete',['id' =>$cate->id]) }}" class="btn-danger btn btn-sm btn-icon btn-delete"><i class="fas fa-trash-alt"></i></a></td>
+                                        </tr>
                                 @endforeach
                                 </tbody>
                                 <!--end::Table body-->
@@ -153,5 +154,43 @@
         <!--end::Content wrapper-->
     </div>
     <!--end:::Main-->
+  
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- DataTables JS -->
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        $('#kt_ecommerce_products_table').DataTable({
+            "paging": true,
+            "lengthMenu": [10, 25, 50, 100],
+            "ordering": true,
+            "info": true,
+            "responsive": true
+            // Add any other options you need
+        });
 
+        // Add event listener for the "Select All" checkbox
+        $('#checkAll').on('change', function() {
+            $('.form-check-input').prop('checked', $(this).prop('checked'));
+            $('#deleteSelected').toggle($(this).prop('checked'));
+        });
+
+        // Add event listener for individual checkboxes
+        $('.form-check-input').on('change', function() {
+            var allChecked = $('.form-check-input:checked').length === $('.form-check-input').length;
+            $('#checkAll').prop('checked', allChecked);
+            $('#deleteSelected').toggle(allChecked);
+        });
+
+        // Add event listener for the "Delete Selected" button
+        $('#deleteSelected').on('click', function() {
+            // Implement the logic to delete selected items
+            alert('Delete Selected items');
+        });
+    });
+</script>
+
+
+   
 @endsection

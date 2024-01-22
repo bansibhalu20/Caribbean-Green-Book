@@ -59,37 +59,72 @@ class AdminCategoryController extends Controller
     }
     public function editCategory($id)
     { 
-        $category = Category::with('parentCategory')->findorfail($id);
-        $parentCategories = Category::whereNull('parent_category_id')->get(); // Fetch only top-level categories
-        return view('admin.categories.edit',compact('category','parentCategories'));
+        try{
+            $category = Category::with('parentCategory')->findorfail($id);
+            $parentCategories = Category::whereNull('parent_category_id')->get(); // Fetch only top-level categories
+            return view('admin.categories.edit',compact('category','parentCategories'));
+        }catch(\Exception $e)
+        {
+              // Handle the exception
+              return redirect()->back()->with("error", $e->getMessage());
+        }
     }
     public function updateCategory(Request $request,$id)
     {
-       
-        $category = Category::findOrFail($id);
-        $category->update([
-            'title' => $request->input('name'),
-            'description' => $request->input('description'),
-            'parent_category_id' => $request->input('parent_cate_id'),
-            //handle the image upload
-            'image' => $category->image, //Default to the existing image
-        ]);
-
-        if($request->hasFile('image'))
+        try
         {
-            //process and save the uploaded image
-            $imageName = time() . '.' . $request->image->getClientOriginalExtension();
-            $request->image->storeAs('admin/category_image/', $imageName);
+            $category = Category::findOrFail($id);
+            $category->update([
+                'title' => $request->input('name'),
+                'description' => $request->input('description'),
+                'parent_category_id' => $request->input('parent_cate_id'),
+                //handle the image upload
+                'image' => $category->image, //Default to the existing image
+            ]);
+        
+            if($request->hasFile('image'))
+            {
+                $file = $request->file('image');
+                    $fileName = 'admin/category_image/' .$file->getClientOriginalName();
 
-            //Delete the old image if it exists
-            if($category->image){
-                Storage::delete('admin/category_image/'.$category->image);
+                    //Move the uploaded file to the publiv disk
+                    $file->storeAs('public',$fileName);
+
+                    // Update the image attribute with the file path
+                    $category->image = $fileName;
+            
             }
-            //update the image attributes in the database 
-            $category->image = $imageName;
             $category->save();
-        }
+            return redirect()->route('admin.category-edit',['id' => $id])->with('success','Category Updated Successfully...');
+         }catch(\Exception $e)
+         {
+              // Handle the exception
+              return redirect()->back()->with("error",$e->getMessage());
+         }
+     }
+    public function deleteCategory($id)
+    {
+        try{
+            $category = Category::find($id);
 
-        return redirect()->route('admin.category.edit',['id' => $id])->with('success','Category Updated Successfully...');
+            if(!$category){
+                return redirect()->back()->with('error','Category not found');
+            }
+            if ($category->image) {
+                $imagePath = public_path('admin/category_image/') . $category->image;
+
+                if (file_exists($imagePath)) {
+                    // Delete the image file
+                    unlink($imagePath);
+                }
+            }
+            $category->delete();
+            return redirect()->back()->with('success','Category deleted successfully...');
+        }catch(\Exception $e)
+        {
+              // Handle the exception
+              return redirect()->back()->with("error",$e->getMessage());
+        }
+        
     }
 }
