@@ -178,7 +178,7 @@ public function update(Request $request,$id)
     }
 
     // Save the business to the database
-    $business->save();
+    $business->update();
 
     // Redirect to the business view page after successfully storing the business
     return redirect(route('admin.business-show'));

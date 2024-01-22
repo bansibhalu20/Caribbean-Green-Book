@@ -211,7 +211,7 @@
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="is_felony" id="is_felony">
                                         <option>{{$busi->is_felony}}</option>
-                                        <option>yes</option>
+                                        <option value="yes">yes</option>
                                     </select>
                                     <!--end::Select2-->
                                     <!--begin::Description-->
