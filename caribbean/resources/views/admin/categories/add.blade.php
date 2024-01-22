@@ -58,7 +58,7 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <!--begin::Form-->
                 <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" upstream
-                    action="{{ route('admin.addcate.store') }}" method="post"
+                    action="{{ route('admin.addcate-store') }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <!--begin::Aside column-->

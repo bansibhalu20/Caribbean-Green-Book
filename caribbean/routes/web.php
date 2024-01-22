@@ -38,9 +38,10 @@ Route::get('admin/logout', [AdminLoginController::class, 'getLogout'])->name('lo
 //Category Module 
 Route::get('admin/view-category',[AdminCategoryController::class,'index'])->name('admin.viewcate');
 Route::get('admin/addcate',[AdminCategoryController::class,'create'])->name('admin.addcate');
-Route::post('admin/add-cate',[AdminCategoryController::class,'store'])->name('admin.addcate.store');
-Route::get('admin/edit-cate/{id}',[AdminCategoryController::class,'editCategory'])->name('admin.category.edit');
-Route::put('admin.update-cate/{id}',[AdminCategoryController::class,'updateCategory'])->name('admin.category.update');
+Route::post('admin/add-cate',[AdminCategoryController::class,'store'])->name('admin.addcate-store');
+Route::get('admin/edit-cate/{id}',[AdminCategoryController::class,'editCategory'])->name('admin.category-edit');
+Route::put('admin.update-cate/{id}',[AdminCategoryController::class,'updateCategory'])->name('admin.category-update');
+Route::get('admin.delete-cate/{id}',[AdminCategoryController::class,'deleteCategory'])->name('admin.category-delete');
 
 //Business Review Module
 Route::get('admin/busi-review',[AdminBusinessReviewController::class,'index'])->name('admin.busi-review');
