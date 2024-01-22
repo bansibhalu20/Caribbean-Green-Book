@@ -53,7 +53,7 @@
                                     
                                     <div class="col-lg-4  mb-lg-0 mb-6 p-2">
                                         <label style="font-size: 14px;">Category</label>
-                                        <select class="form-control form-select" name="cate_name" id="cate_name"
+                                        <select class="form-control form-select" name="search_cate" id="search_cate"
                                             data-col-index="4">
                                             <option value="">--Select--</option>
                                            
@@ -159,36 +159,70 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <!-- DataTables JS -->
 <script>
-    $(document).ready(function() {
-        // Initialize DataTable
-        $('#kt_ecommerce_products_table').DataTable({
-            "paging": true,
-            "lengthMenu": [10, 25, 50, 100],
-            "ordering": true,
-            "info": true,
-            "responsive": true
-            // Add any other options you need
-        });
+   $(document).ready(function() {
+    // Declare a variable to hold the DataTable instance
+    let dataTable;
 
-        // Add event listener for the "Select All" checkbox
-        $('#checkAll').on('change', function() {
-            $('.form-check-input').prop('checked', $(this).prop('checked'));
-            $('#deleteSelected').toggle($(this).prop('checked'));
-        });
+    
+    // Initialize DataTable with server-side processing
+    initializeDataTable();
 
-        // Add event listener for individual checkboxes
-        $('.form-check-input').on('change', function() {
-            var allChecked = $('.form-check-input:checked').length === $('.form-check-input').length;
-            $('#checkAll').prop('checked', allChecked);
-            $('#deleteSelected').toggle(allChecked);
-        });
+    function initializeDataTable() {
+        dataTable = $('#kt_ecommerce_products_table').DataTable({
+            processing: true,
+            serverSide: true,
+            destroy: true,
+            ajax:{
+                url:'{{ route('admin.category-dataTable') }}',
+                type:GET,
+                data:function(d){
+                    d.search = {
+                        customer_name: $('#search_cate').val();
+                    };
+                }
+            },
+            columns:[
+            {
+                data:'cate_name',
+                name:'cate_name'
+            },
+            {
+                data: 'avatar',
+                name: 'avatar',
+                orderable: false,
+                searchable: false,
+                render: function(data, type, full, meta) {
+                    if (type === 'display') {
+                        // Display the image in the column
+                        if (data) {
+                            return '<div class="symbol symbol-circle simbol-50px overflow-hidden me-3">' +
+                                '<div class="symbol-label">' +
+                                '<img src="' + data + '" alt="Profile" width="50">' +
+                                '</div>' +
+                                '</div>';
+                        } else {
+                            return 'No avatar'; // Display a default text if no image is available
+                        }
+                    }
+                    return data; // For non-display type, return the original data (URL to the image)
+                }
+            },
+            {
+                data: 'description',
+                name: 'description'
+            },
 
-        // Add event listener for the "Delete Selected" button
-        $('#deleteSelected').on('click', function() {
-            // Implement the logic to delete selected items
-            alert('Delete Selected items');
+            ]
+
+
+           
         });
-    });
+    }
+
+   
+
+});
+
 </script>
 
 

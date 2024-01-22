@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use DataTables;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -126,5 +127,32 @@ class AdminCategoryController extends Controller
               return redirect()->back()->with("error",$e->getMessage());
         }
         
+    }
+    public function dataTable(Request $request)
+    {
+        try {
+            if ($request->ajax()) {
+                $query = Category::query();
+    
+                return DataTables::of($query)
+                    ->addColumn('avatar', function ($category) {
+                        if ($category->avatar) {
+                            // Add logic to get the avatar URL or path
+                            // For example: $category->avatar_url or asset('path/to/avatar/' . $category->avatar)
+                            return asset('admin/category_image/' . $category->avatar);
+                        }
+                        return null;
+                    })
+                    ->addColumn('checkbox', function ($category) {
+                        return '<div class="form-check form-check-sm form-check-custom form-check-solid">' .
+                            '<input class="form-check-input checkItem" type="checkbox" data-id="' . $category->id . '" id="checkItem' . $category->id . '" />' .
+                            '</div>';
+                    })
+                    ->toJson();
+            }
+        } catch (\Exception $e) {
+            // Handle the exception
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
