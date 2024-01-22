@@ -36,6 +36,7 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="{{asset('public/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('public/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -116,6 +117,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="{{asset('public/assets/js/custom/apps/chat/chat.js')}}"></script>
 		<script src="{{asset('public/assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
 		<script src="{{asset('public/assets/js/custom/utilities/modals/users-search.js')}}"></script>
+		
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
