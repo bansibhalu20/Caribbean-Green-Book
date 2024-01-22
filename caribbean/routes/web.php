@@ -50,6 +50,6 @@ Route::get('admin/business-create', [AdminBusinessController::class, 'create'])-
 Route::post('admin/business-create',[AdminBusinessController::class,'store'])->name('admin.business-store');
 Route::get('admin/business-show', [AdminBusinessController::class, 'show'])->name('admin.business-show');
 Route::get('admin/business-edit/{id}',[AdminBusinessController::class,'edit'])->name('admin.business-edit');
-
+Route::put('admin/business-update/{id}',[AdminBusinessController::class,'update'])->name('admin.business-update');
 
 
