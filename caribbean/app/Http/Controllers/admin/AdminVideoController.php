@@ -88,7 +88,6 @@ class AdminVideoController extends Controller
             return redirect()->back(); // Redirect back to the form 
         }
     }
-    
    
     public function showEditView($id)
     {
@@ -101,8 +100,6 @@ class AdminVideoController extends Controller
             return redirect()->back(); // Redirect back previous page 
         }
     }
-
-
 
     public function update(Request $request, $id)
     {

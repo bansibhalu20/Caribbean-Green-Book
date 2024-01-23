@@ -137,17 +137,7 @@
                     <!--end::Aside column-->
                     <!--begin::Main column-->
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                        <!--begin:::Tabs-->
-                        <ul
-                            class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
-                            <!--begin:::Tab item-->
-                            <li class="nav-item">
-                                <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                                    href="#kt_ecommerce_add_product_general">General</a>
-                            </li>
-                            <!--end:::Tab item-->
-                        </ul>
-                        <!--end:::Tabs-->
+                       
                         <!--begin::Tab content-->
                         <div class="tab-content">
                             <!--begin::Tab pane-->

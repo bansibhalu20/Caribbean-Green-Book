@@ -31,7 +31,7 @@
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
                                 <a href="" class="text-muted text-hover-primary">Manage
-                                    Customer Review</a>
+                                    business Review</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -41,7 +41,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Add Customer Review</a>
+                                <a href="" class="text-muted text-hover-primary">Add business Review</a>
                             </li>
                             <!--end::Item-->
                         </ul>
@@ -58,7 +58,7 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Form-->
                     <form id="kt_account_profile_details_form" class="form d-flex flex-column flex-lg-row" upstream
-                        name="myForm" action="" method="POST" enctype="multipart/form-data">
+                        name="myForm" action="{{ route('admin.busi-review-store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Aside column-->
                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -121,7 +121,7 @@
                                     <!--begin::Select2-->
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an Busines" id="kt_ecommerce_add_product_store_template"
-                                        name="Business" id="Business">
+                                        name="business" id="Business">
                                         <option></option>
                                     </select>
 
@@ -142,17 +142,7 @@
                         <!--end::Aside column-->
                         <!--begin::Main column-->
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                            <!--begin:::Tabs-->
-                            <ul
-                                class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
-                                <!--begin:::Tab item-->
-                                <li class="nav-item">
-                                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                                        href="#kt_ecommerce_add_product_general">General</a>
-                                </li>
-                                <!--end:::Tab item-->
-                            </ul>
-                            <!--end:::Tabs-->
+                           
                             <!--begin::Tab content-->
                             <div class="tab-content">
                                 <!--begin::Tab pane-->
@@ -201,9 +191,7 @@
                                                         id="lname"  value="{{ old('lastname') }}">
                                                     <!--end::Input-->
                                                     <!--begin::Description-->
-                                                    <div class="text-muted fs-7">A customer name is required and
-                                                        recommended
-                                                        to be unique.</div>
+                                                    <div class="text-muted fs-7">A customer last name is required.</div>
                                                     <span id="lname-error"></span>
 
                                                     <!--end::Description-->
@@ -229,6 +217,29 @@
                                                 </div>
                                                 <!--end::Input group-->
 
+                                                <div class="mb-10 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Business Review</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    
+                                                    <div id="business-review-stars" class="star-rating form-control mb-2">
+                                                        <i class="fas fa-star" data-value="1"></i>
+                                                        <i class="fas fa-star" data-value="2"></i>
+                                                        <i class="fas fa-star" data-value="3"></i>
+                                                        <i class="fas fa-star" data-value="4"></i>
+                                                        <i class="fas fa-star" data-value="5"></i>
+                                                    </div>
+                                                    <!-- Hidden input field to store the selected rating value -->
+                                                    <input type="hidden" name="business_review" id="business-review-input" value="{{ old('business_review') }}">
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Please rate the business.</div>
+                                                    <span id="business-review-error"></span>
+                                                  
+                                                    <!--end::Description-->
+                                                </div>
+
                                                  <!--begin::Input group-->
                                                  <div class="mb-10 fv-row">
                                                     <!--begin::Label-->
@@ -250,15 +261,14 @@
                                                 
                                         </div>
                                         <!--end::Card header-->
-                                            </div>
-                                            <!--end::Card header-->
-                                        </div>
-                                        <!--end::General options-->
-
-                                       
                                 </div>
-                            </div>
-                            <!--end::Tab pane-->
+                                <!--end::Card header-->
+                        </div>
+                        <!--end::General options-->
+              
+                    </div>
+             </div>
+             <!--end::Tab pane-->
 
                             <div class="d-flex justify-content-end mt-5">
                                 <!--begin::Button-->
@@ -287,4 +297,34 @@
         <!--end::Content wrapper-->
     </div>
     <!--end:::Main-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var stars = document.querySelectorAll("#business-review-stars i");
+        var businessReviewInput = document.getElementById("business-review-input");
+
+        stars.forEach(function (star, index) {
+            star.addEventListener("click", function () {
+                var ratingValue = index + 1;
+
+                // Update the hidden input field value
+                businessReviewInput.value = ratingValue;
+
+                // Remove the 'selected' class from all stars
+                stars.forEach(function (s) {
+                    s.classList.remove("selected");
+                });
+
+                // Add the 'selected' class to the clicked star and those before it
+                for (var i = 0; i < ratingValue; i++) {
+                    stars[i].classList.add("selected");
+                }
+
+                // You can remove or customize the console log as needed
+                console.log("Selected business review rating: " + ratingValue);
+            });
+        });
+    });
+</script>
+
+
 @endsection

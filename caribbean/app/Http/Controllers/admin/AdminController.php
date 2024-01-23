@@ -48,10 +48,10 @@ class AdminController extends Controller
         try{
             //validation
             $request->validate([
-                'name' => 'required|string|max:255',
-                'contact_email'=>'required|email',
-                'address' => 'required',
-                'phone'=> 'required',
+                'name' => 'nullable|string|max:255',
+                'contact_email'=>'nullable|email',
+                'address' => 'nullable',
+                'phone'=> 'nullable',
             ]);
             //find admin records
             $admin = Admin::find($id);
