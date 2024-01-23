@@ -56,7 +56,8 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Form-->
                     <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row"
-                        action="{{route('admin.business-store')}}" method="POST" enctype="multipart/form-data">
+                        action="{{route('admin.business-update',['id'=>$busi->id])}}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <!--begin::Aside column-->
                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -74,23 +75,27 @@
                                 <!--begin::Card body-->
                                 <div class="card-body text-center pt-0">
                                     <!--begin::Image input-->
-                                    <!--begin::Image input placeholder-->
-                                    <style>
-                                        .image-input-placeholder {
-                                            background-image: url('{{ asset(' public/assets/media/svg/files/blank-image.svg') }}');
-                                        }
-
-                                        [data-theme="dark"] .image-input-placeholder {
-                                            background-image: url('{{ asset(' public/assets/media/svg/files/blank-image-dark.svg') }}');
-                                        }
-                                    </style>
-                                    <!--end::Image input placeholder-->
-                                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                   <!--begin::Image input-->
+                                   <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
                                         <!--begin::Preview existing avatar-->
-                                        <div class="image-input-wrapper w-150px h-150px"></div>
+                                       @if ($busi->image != null)
+                                            <div class="image-input-wrapper w-150px h-150px"
+                                                style="background-image: url('{{ asset('storage/app/public/' . $busi->image) }}')">
+                                            </div>
+                                        @else
+                                            <style>
+                                                .image-input-placeholder {
+                                                    background-image: url('{{ asset(' public/assets/media/svg/files/blank-image.svg') }}');
+                                                }
+
+                                                [data-theme="dark"] .image-input-placeholder {
+                                                    background-image: url('{{ asset(' public/assets/media/svg/files/blank-image-dark.svg') }}');
+                                                }
+                                            </style>
+                                            <div class="image-input-wrapper w-150px h-150px"></div>
+                                        @endif
                                         <!--end::Preview existing avatar-->
-                                        <!--begin::Label-->
                                         <label
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
                                             data-kt-image-input-action="change" data-bs-toggle="tooltip"
