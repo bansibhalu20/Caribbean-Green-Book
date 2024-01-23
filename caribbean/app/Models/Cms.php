@@ -14,7 +14,7 @@ class Cms extends Model
 
     // The attributes that are mass assignable.
     protected $fillable = [
-        'title','description','image',
+        'title','description','image','slug',
     ];
 
     // Timestamps

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->nullable(); // Set NOT NULL constraint on title column
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->timestamps();
         });
     }

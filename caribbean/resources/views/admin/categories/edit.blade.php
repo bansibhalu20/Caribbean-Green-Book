@@ -80,11 +80,16 @@
                                         <!--begin::Preview existing avatar-->
                                        @if ($category->image != null)
                                             <div class="image-input-wrapper w-150px h-150px"
-                                                style="background-image: url('{{ asset('storage/app/public/' . $category->image) }}')">
+                                                style="background-image: url('{{ asset('storage/app/public/ . $category->image) }}')">
                                             </div>
                                         @else
                                             <style>
                                                 .image-input-placeholder {
+                                                    background-image: url('{{ asset(" public/assets/media/svg/files/blank-image.svg") }}');
+                                                }
+
+                                                [data-theme="dark"] .image-input-placeholder {
+                                                    background-image: url('{{ asset("public/assets/media/svg/files/blank-image-dark.svg) }}');
                                                     background-image: url('{{ asset("public/assets/media/svg/files/blank-image.svg") }}');
                                                 }
 
