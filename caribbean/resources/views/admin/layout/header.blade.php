@@ -8,6 +8,23 @@
 		session(['image' => $admin->image]);
 	}
 @endphp
+	<!-- Include Bootstrap Star Rating Plugin CSS from CDN -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-star-rating@4.0.6/css/star-rating.min.css">
+ 	<!-- Include Font Awesome CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">   <!-- Include Bootstrap Star Rating Plugin JS -->
+ 
+	<!-- Include Bootstrap Star Rating Plugin JS from CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-star-rating@4.0.6/js/star-rating.min.js"></script>
+
+	<style>
+        .star-rating i {
+            cursor: pointer;
+        }
+
+        .star-rating i.selected {
+            color: yellow;
+        }
+    </style>
 
 <!-- SweetAlert2 -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

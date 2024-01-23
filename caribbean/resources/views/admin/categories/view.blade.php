@@ -156,75 +156,29 @@
     <!--end:::Main-->
   
 <!-- jQuery -->
+<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <!-- DataTables JS -->
-<script>
-   $(document).ready(function() {
-    // Declare a variable to hold the DataTable instance
-    let dataTable;
 
-    
-    // Initialize DataTable with server-side processing
-    initializeDataTable();
-
-    function initializeDataTable() {
-        dataTable = $('#kt_ecommerce_products_table').DataTable({
-            processing: true,
+<!-- <script>
+    $(document).ready(function() {
+        $('#kt_ecommerce_products_table').DataTable({
             serverSide: true,
-            destroy: true,
-            ajax:{
-                url:'{{ route('admin.category-dataTable') }}',
-                type:GET,
-                data:function(d){
-                    d.search = {
-                        customer_name: $('#search_cate').val();
-                    };
-                }
+            processing: true,
+            ajax: {
+                url: '{{ route("admin.category-dataTable") }}', 
+                type: 'GET',
             },
-            columns:[
-            {
-                data:'cate_name',
-                name:'cate_name'
-            },
-            {
-                data: 'avatar',
-                name: 'avatar',
-                orderable: false,
-                searchable: false,
-                render: function(data, type, full, meta) {
-                    if (type === 'display') {
-                        // Display the image in the column
-                        if (data) {
-                            return '<div class="symbol symbol-circle simbol-50px overflow-hidden me-3">' +
-                                '<div class="symbol-label">' +
-                                '<img src="' + data + '" alt="Profile" width="50">' +
-                                '</div>' +
-                                '</div>';
-                        } else {
-                            return 'No avatar'; // Display a default text if no image is available
-                        }
-                    }
-                    return data; // For non-display type, return the original data (URL to the image)
-                }
-            },
-            {
-                data: 'description',
-                name: 'description'
-            },
-
-            ]
-
-
-           
+            columns: [
+                // Define your datatable columns here
+                { data: 'checkbox', name: 'checkbox', orderable: false, searchable: false },
+                { data: 'title', name: 'title' },
+                { data: 'image', name: 'image' },
+                { data: 'description', name: 'description' },
+                { data: 'actions', name: 'actions', orderable: false, searchable: false },
+            ],
         });
-    }
-
-   
-
-});
-
-</script>
-
+    });
+</script> -->
 
    
 @endsection

@@ -46,7 +46,8 @@ Route::get('admin/delete-cate/{id}',[AdminCategoryController::class,'deleteCateg
 Route::get('admin/datatable',[AdminCategoryController::class,'dataTable'])->name('admin.category-dataTable');
 
 //Business Review Module
-Route::get('admin/busi-review',[AdminBusinessReviewController::class,'index'])->name('admin.busi-review');
+Route::get('admin/busi-review',[AdminBusinessReviewController::class,'create'])->name('admin.busi-review');
+Route::post('admin/busi-store',[AdminBusinessReviewController::class,'store'])->name('admin.busi-review-store');
 
 //Business Module
 Route::get('admin/business-create', [AdminBusinessController::class, 'create'])->name('admin.business-create');

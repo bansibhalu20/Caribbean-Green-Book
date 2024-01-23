@@ -128,31 +128,25 @@ class AdminCategoryController extends Controller
         }
         
     }
-    public function dataTable(Request $request)
+    public function dataTable()
     {
-        try {
-            if ($request->ajax()) {
-                $query = Category::query();
-    
-                return DataTables::of($query)
-                    ->addColumn('avatar', function ($category) {
-                        if ($category->avatar) {
-                            // Add logic to get the avatar URL or path
-                            // For example: $category->avatar_url or asset('path/to/avatar/' . $category->avatar)
-                            return asset('admin/category_image/' . $category->avatar);
-                        }
-                        return null;
-                    })
-                    ->addColumn('checkbox', function ($category) {
-                        return '<div class="form-check form-check-sm form-check-custom form-check-solid">' .
-                            '<input class="form-check-input checkItem" type="checkbox" data-id="' . $category->id . '" id="checkItem' . $category->id . '" />' .
-                            '</div>';
-                    })
-                    ->toJson();
-            }
-        } catch (\Exception $e) {
-            // Handle the exception
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        $categories = Category::select(['id', 'title', 'image', 'description']);
+
+        return datatables()->of($categories)
+            ->addColumn('checkbox', function ($category) {
+                // Add checkbox HTML if needed
+                return '<input type="checkbox" value="'.$category->id.'">';
+            })
+            ->addColumn('image', function ($category) {
+                // Add image HTML if needed
+                return '<img src="'.asset('admin/category_image/'.$category->image).'" height="50px" width="50px" style="border-radius: 30px;" alt="Image">';
+            })
+            ->addColumn('actions', function ($category) {
+                // Add actions HTML (edit and delete buttons) if needed
+                return '<a href="'.route('admin.category-edit', ['id' => $category->id]).'" class="btn-info btn btn-sm btn-icon"><i class="fas fa-edit"></i></a>
+                        <a href="'.route('admin.category-delete', ['id' => $category->id]).'" class="btn-danger btn btn-sm btn-icon btn-delete"><i class="fas fa-trash-alt"></i></a>';
+            })
+            ->rawColumns(['checkbox', 'image', 'actions'])
+            ->toJson();
     }
 }
