@@ -53,7 +53,7 @@
                                     
                                     <div class="col-lg-4  mb-lg-0 mb-6 p-2">
                                         <label style="font-size: 14px;">Category</label>
-                                        <select class="form-control form-select" name="cate_name" id="cate_name"
+                                        <select class="form-control form-select" name="search_cate" id="search_cate"
                                             data-col-index="4">
                                             <option value="">--Select--</option>
                                            
@@ -156,41 +156,29 @@
     <!--end:::Main-->
   
 <!-- jQuery -->
+<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <!-- DataTables JS -->
-<script>
+
+<!-- <script>
     $(document).ready(function() {
-        // Initialize DataTable
         $('#kt_ecommerce_products_table').DataTable({
-            "paging": true,
-            "lengthMenu": [10, 25, 50, 100],
-            "ordering": true,
-            "info": true,
-            "responsive": true
-            // Add any other options you need
-        });
-
-        // Add event listener for the "Select All" checkbox
-        $('#checkAll').on('change', function() {
-            $('.form-check-input').prop('checked', $(this).prop('checked'));
-            $('#deleteSelected').toggle($(this).prop('checked'));
-        });
-
-        // Add event listener for individual checkboxes
-        $('.form-check-input').on('change', function() {
-            var allChecked = $('.form-check-input:checked').length === $('.form-check-input').length;
-            $('#checkAll').prop('checked', allChecked);
-            $('#deleteSelected').toggle(allChecked);
-        });
-
-        // Add event listener for the "Delete Selected" button
-        $('#deleteSelected').on('click', function() {
-            // Implement the logic to delete selected items
-            alert('Delete Selected items');
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: '{{ route("admin.category-dataTable") }}', 
+                type: 'GET',
+            },
+            columns: [
+                // Define your datatable columns here
+                { data: 'checkbox', name: 'checkbox', orderable: false, searchable: false },
+                { data: 'title', name: 'title' },
+                { data: 'image', name: 'image' },
+                { data: 'description', name: 'description' },
+                { data: 'actions', name: 'actions', orderable: false, searchable: false },
+            ],
         });
     });
-</script>
-
+</script> -->
 
    
 @endsection
