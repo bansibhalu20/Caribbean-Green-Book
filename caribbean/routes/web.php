@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminBusinessController;
 use App\Http\Controllers\admin\AdminBusinessReviewController;
+use App\Http\Controllers\admin\AdminVideoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,4 +56,12 @@ Route::get('admin/business-edit/{id}',[AdminBusinessController::class,'edit'])->
 Route::put('admin/business-update/{id}',[AdminBusinessController::class,'update'])->name('admin.business-update');
 Route::get('admin.business-delete/{id}',[AdminBusinessController::class,'delete'])->name('admin.business-delete');
 
+//Video Module
+Route::get('admin/video/add', [AdminVideoController::class, 'showAddView'])->name('admin.video.add');
+Route::get('admin/video/create', [AdminVideoController::class, 'showCreateView'])->name('admin.video.create');
+Route::any('/video/store', [AdminVideoController::class, 'store'])->name('video.store');
+Route::get('admin/video/edit/{id}', [AdminVideoController::class, 'showEditView'])->name('admin.video.edit');
+Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('admin.video.update');
+Route::delete('/admin/video/{id}', [AdminVideoController::class, 'destroy'])->name('admin.video.destroy');
 
+//module
