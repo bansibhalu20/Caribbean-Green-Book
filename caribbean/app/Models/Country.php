@@ -14,7 +14,7 @@ class Country extends Model
 
     // The attributes that are mass assignable.
     protected $fillable = [
-        'name','currency_name','currency_symbol','flag','country_code','iso_alpha2','iso_alpha3','currency_code','phone_code','iso_numeric'
+        'name','currency_name','currency_symbol','flag','country_code'
     ];
 
     // The attributes that should be hidden for arrays.

@@ -178,10 +178,8 @@
 
                                                 <!--end::Description-->
                                             </div>
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Card body-->
-                                        <div class="card-body pt-0">
+                                      
+                                             <!--end::Input group-->
                                             <!--begin::Input group-->
                                             <div class="mb-10 fv-row">
                                                 <!--begin::Label-->
@@ -196,10 +194,8 @@
                                                 
                                                 <!--end::Description-->
                                             </div>
-                                        </div>
+                                       
                                             <!--end::Input group-->
-                                        <!--begin::Card body-->
-                                        <div class="card-body pt-0">
                                            <!--begin::Input group-->
                                            <div>
                                                 <!--begin::Label-->
@@ -214,7 +210,7 @@
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
-                                        </div>
+                                      
                                         <!--end::Card header-->
                                     </div>
                                     <!--end::General options-->

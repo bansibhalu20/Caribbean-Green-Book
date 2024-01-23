@@ -8,15 +8,21 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        // Create tbl_country table
-        Schema::create('tbl_country', function (Blueprint $table) {
+        Schema::create('tbl_country_reference', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('currency_name')->nullable();
             $table->string('currency_symbol')->nullable();
+            $table->string('currency_code')->nullable();
+            $table->string('iso_alpha2')->nullable();
+            $table->string('iso_alpha3')->nullable();
+            $table->string('phone_code')->nullable();
+            $table->string('iso_numeric')->nullable();
             $table->string('flag')->nullable();
             $table->integer('country_code')->nullable();
             $table->timestamps();
@@ -25,10 +31,11 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        // Drop tbl_country table if the migration is rolled back
-        Schema::dropIfExists('tbl_country');
+        Schema::dropIfExists('tbl_country_reference');
     }
 };

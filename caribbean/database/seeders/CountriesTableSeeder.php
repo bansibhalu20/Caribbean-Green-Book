@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
-use App\Models\Country;
+use App\Models\CountryReference;
 class CountriesTableSeeder extends Seeder
 {
     /**
@@ -3371,7 +3371,7 @@ class CountriesTableSeeder extends Seeder
     ];
 
     foreach ($countries as $countryData) {
-        Country::create($countryData);
+        CountryReference::create($countryData);
     }
     }
 }

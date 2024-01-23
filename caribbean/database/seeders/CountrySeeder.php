@@ -20,7 +20,7 @@ class CountrySeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $currencyCode = $faker->currencyCode;
     
-            DB::table('tbl_country')->insert([
+            DB::table('tbl_country_reference')->insert([
                 'name' => $faker->country,
                 'currency_icon' => $this->getCurrencyIcon($currencyCode),
                 'currency_name' => $faker->currency, // Corrected line

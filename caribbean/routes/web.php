@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\AdminCategoryController;
 use App\Http\Controllers\admin\AdminBusinessController;
 use App\Http\Controllers\admin\AdminBusinessReviewController;
 use App\Http\Controllers\admin\AdminVideoController;
+use App\Http\Controllers\admin\AdminCountryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +49,9 @@ Route::get('admin/datatable',[AdminCategoryController::class,'dataTable'])->name
 //Business Review Module
 Route::get('admin/busi-review',[AdminBusinessReviewController::class,'create'])->name('admin.busi-review');
 Route::post('admin/busi-store',[AdminBusinessReviewController::class,'store'])->name('admin.busi-review-store');
+
+//Country Module
+Route::get('admin/country-create',[AdminCountryController::class,'create'])->name('admin.country-add');
 
 //Business Module
 Route::get('admin/business-create', [AdminBusinessController::class, 'create'])->name('admin.business-create');
