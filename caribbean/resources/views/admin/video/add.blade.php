@@ -1,13 +1,13 @@
 @extends('admin.layout.app')
 @section('content')
 
-   @if(session('success'))
+   <!-- @if(session('success'))
         Swal.fire({
             icon: 'success',
             title: 'Success',
             text: '{{ session("success") }}',
         });
-    @endif
+    @endif -->
 
     <!--begin::Main-->
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -88,7 +88,7 @@
                                                     Selected</button>
                                             </div>
                                             <div class="mw-150px w-100">
-                                                <a href="{{ route('admin.video.create') }}" class="btn btn-primary" >Add Video </a>
+                                                <a href="{{ route('admin.video-create') }}" class="btn btn-primary" >Add Video </a>
                                             </div>
                                         </div>
                                     </div>
@@ -144,9 +144,9 @@
                                         <td><a href="{{ $video->link }}" target="_blank">{{ $video->link }}</a></td>
 
                                         <td>
-                                        <a href="{{ route('admin.video.edit', ['id' => $video->id]) }}" class="btn-info btn btn-sm btn-icon  btn-edit"><i class="fas fa-edit"></i> </a>
+                                        <a href="{{ route('admin.video-edit', ['id' => $video->id]) }}" class="btn-info btn btn-sm btn-icon  btn-edit"><i class="fas fa-edit"></i> </a>
 
-                                        <form action="{{ route('admin.video.destroy', ['id' => $video->id]) }}" method="POST" style="display: inline;">
+                                        <form action="{{ route('admin.video-destroy', ['id' => $video->id]) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn-danger btn btn-sm btn-icon btn-delete" onclick="return confirm('Are you sure you want to delete this video?')"> <i class="fas fa-trash-alt"></i></button>
@@ -174,7 +174,7 @@
     </div>
     <!--end:::Main-->
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <!-- Include DataTables -->
     <script>

@@ -53,7 +53,7 @@
                         <!--begin:Menu item-->
                         <div  class="menu-item here show menu-accordion">
                             <!--begin:Menu link-->
-                            <a href="{{ url('admin/video/add')}}">
+                            <a href="{{ url('admin/video-add')}}">
                                 <span  class="menu-link"> 
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
@@ -138,7 +138,31 @@
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
-                        
+
+                        <!--begin:Menu item-->
+                        <div  class="menu-item here show menu-accordion">
+                            <!--begin:Menu link-->
+                            <a href="{{ url('admin/cms-add')}}">
+                                <span  class="menu-link"> 
+                                    <span class="menu-icon">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path fill="#8c93a6" d="M576 128v288l96-96 96 96V128h128v768H320V128h256zm-448 0h128v768H128V128z"></path>
+                                            </g>
+                                        </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title">CMS Management </span>
+                                </span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
                     </div>
                     <!--end::Menu-->
                 </div>

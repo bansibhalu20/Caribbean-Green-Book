@@ -7,7 +7,7 @@
             <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                       Video Form</h1>
+                      Edit CMS Form</h1>
 
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
@@ -18,14 +18,14 @@
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{route('admin.video-add')}}" class="text-muted text-hover-primary">Add video</a>
+                            <a href="{{route('admin.cms-add')}}" class="text-muted text-hover-primary">Add CMS</a>
                         </li>
 
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-dark">
-                            Video Form
+                          Edit CMS Form
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{ route('admin.video-store') }}" method="POST" enctype="multipart/form-data">
+                <form id="kt_account_profile_details_form" name="myForm" class="form d-flex flex-column flex-lg-row" action="{{route('admin.cms-store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10"> 
                         <div class="card card-flush py-4">   
@@ -79,32 +79,50 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
                                 <div class="d-flex flex-column gap-7 gap-lg-10">
+                                    
                                     <div class="card card-flush py-4">
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h4>Add</h4>
+                                                <h4>Add </h4>
                                             </div>
                                         </div>
                                         <div class="card-body pt-0">
-                                            
-                                            <!-- Add Link  -->
-                                            <div class="mb-10 fv-row">
-                                                <label class="required form-label">Link</label>
-                                                <input type="text" name="link" id="link" class="form-control mb-2" placeholder="Video link" value="" />
-                                                <span class="form-text">Enter the link for the video.</span>
-                                                <span class="form-text text-danger">@error('link') {{ $message }} @enderror</span>
-                                            </div>
-
                                             <!-- Add Title  -->
                                             <div class="mb-10 fv-row">
                                                 <label class="required form-label">Title</label>
-                                                <input type="text" name="title" id="title" class="form-control mb-2" placeholder="Video title" value="" />
-                                                <span class="form-text">Enter the title for the video.</span>
+                                                <input type="text" name="title" id="title" class="form-control mb-2" placeholder="title" value="{{ $cms->title }}" />
+                                                <span class="form-text">Enter the title .</span>
                                                 <span class="form-text text-danger">@error('title') {{ $message }} @enderror</span>
                                             </div>
 
                                         </div>
                                     </div>
+
+                                    <div class="card card-flush py-4">
+                                        <!--begin::Card header-->
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h4> Description </h4>
+                                            </div>
+                                        </div>
+                                        <!--end::Card header-->
+
+                                        <!--begin::Card body-->
+                                        <div class="card-body pt-0">
+                                            <!--begin::Input group-->
+                                            <div class="mb-10 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required form-label">Description</label>
+                                                <!--end::Label-->
+                                                <!--begin::Textarea-->
+                                                <textarea name="description" id="description" class="form-control mb-2 ckeditor" placeholder="description">{{ $cms->description }}</textarea>
+                                                <span class="form-text">Enter the description.</span>
+                                                <span class="form-text text-danger">@error('description') {{ $message }} @enderror</span>
+                                                <!--end::Textarea-->
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                                     
@@ -121,5 +139,10 @@
     </div>
 </div>
 
-
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace('description');
+    });
+</script>
 @endsection

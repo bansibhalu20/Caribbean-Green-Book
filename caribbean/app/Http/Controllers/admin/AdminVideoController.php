@@ -9,6 +9,7 @@ use App\Models\Video;
 use Illuminate\Support\Facades\Storage; 
 use Illuminate\Database\QueryException;
 
+
 class AdminVideoController extends Controller
 {
     
@@ -24,12 +25,7 @@ class AdminVideoController extends Controller
         }   
     }
 
-    public function getDataTables()
-    {
-    $videos = Video::select(['id', 'title', 'image', 'link', 'action'])->get();
-
-    return response()->json(['data' => $videos]);
-    }
+    
 
 
     public function showCreateView()
@@ -37,7 +33,7 @@ class AdminVideoController extends Controller
         try {
             return view('admin.video.create');
         } catch (\Exception $e) {
-            // Handle the exception here
+            // Handle the exception
             Alert::error('Error', 'An error occurred while loading the create view.');
             return redirect()->back();
         }
@@ -75,18 +71,26 @@ class AdminVideoController extends Controller
             ]);
     
             // Redirect or respond as needed
-            // return redirect()->route('admin.video.add')->with('success', 'Video added successfully');
+            // /return redirect()->route('admin.video.add')->with('success', 'Video added successfully');
 
             // Show  success message
             Alert::success('Success', 'Video added successfully');
 
             // Redirect 
-            return redirect()->route('admin.video.add');
+            return redirect()->route('admin.video-add');
         } catch (QueryException $e) {
             // Handle the exception
             Alert::error('Error', 'An error occurred while adding the video.');
             return redirect()->back(); // Redirect back to the form 
         }
+    }
+
+
+    public function getData()
+    {
+        $videos = Video::select(['id', 'title', 'image', 'link']);
+    
+        return response()->json(['data' => $videos->get()]);
     }
     
    
@@ -143,7 +147,7 @@ class AdminVideoController extends Controller
             Alert::success('Success', 'Video updated successfully');
     
             // Redirect with a success alert
-            return redirect()->route('admin.video.add')->with('success', 'Video updated successfully');
+            return redirect()->route('admin.video-add')->with('success', 'Video updated successfully');
         } catch (\Exception $e) {
             // Handle the exception
             Alert::error('Error', 'An error occurred while updating the video.');
@@ -166,7 +170,7 @@ class AdminVideoController extends Controller
             // Show SweetAlert success message
             Alert::success('success', 'Video deleted successfully');
 
-            return redirect()->route('admin.video.add');
+            return redirect()->route('admin.video-add');
         } catch (\Exception $e) {
             // Handle the exception
             Alert::error('error', 'An error occurred while deleting the video.');

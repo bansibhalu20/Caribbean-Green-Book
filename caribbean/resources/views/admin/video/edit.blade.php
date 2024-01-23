@@ -16,7 +16,7 @@
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ url('admin/video/add') }}" class="text-muted text-hover-primary">Video Management</a>
+                            <a href="{{ url('admin/video-add') }}" class="text-muted text-hover-primary">Video Management</a>
                         </li>
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -31,7 +31,7 @@
             
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <form id="kt_account_profile_details_form" action="{{ route('admin.video.update', ['id' => $video->id]) }}" name="editForm" class="form d-flex flex-column flex-lg-row"  method="POST" enctype="multipart/form-data">
+                <form id="kt_account_profile_details_form" action="{{ route('admin.video-update', ['id' => $video->id]) }}" name="editForm" class="form d-flex flex-column flex-lg-row"  method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -52,11 +52,9 @@
                                     }
                                 </style> 
                                 <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-150px h-150px">
-                                        @if($video->image)
-                                            <img src="{{ url('storage/app/' . $video->image) }}" alt="Video Image" width="150px" height="150px">
-                                        @endif
-                                    </div>
+                                <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ $video->image ? url('storage/app/' . $video->image) : asset("public/assets/media/svg/files/blank-image.svg") }}'); background-size: cover; background-position: center; border-radius: 30px; position: relative;">
+                                      
+                                </div>
                                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
                                         <i class="bi bi-pencil-fill fs-7"></i>
                                         <input type="file" name="image" accept=".png, .jpg, .jpeg" />
