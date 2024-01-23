@@ -64,4 +64,5 @@ Route::get('admin/video/edit/{id}', [AdminVideoController::class, 'showEditView'
 Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('admin.video.update');
 Route::delete('/admin/video/{id}', [AdminVideoController::class, 'destroy'])->name('admin.video.destroy');
 
-//module
+//Plan Module
+
