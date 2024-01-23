@@ -53,8 +53,10 @@ Route::post('admin/busi-store',[AdminBusinessReviewController::class,'store'])->
 Route::get('admin/business-create', [AdminBusinessController::class, 'create'])->name('admin.business-create');
 Route::post('admin/business-create',[AdminBusinessController::class,'store'])->name('admin.business-store');
 Route::get('admin/business-show', [AdminBusinessController::class, 'show'])->name('admin.business-show');
+Route::post('admin/business-dataTable',[AdminBusinessController::class, 'dataTable'])->name('admin.business-dataTable');
 Route::get('admin/business-edit/{id}',[AdminBusinessController::class,'edit'])->name('admin.business-edit');
 Route::put('admin/business-update/{id}',[AdminBusinessController::class,'update'])->name('admin.business-update');
+Route::get('admin.business-delete/{id}',[AdminBusinessController::class,'delete'])->name('admin.business-delete');
 
 //Video Module
 Route::get('admin/video/add', [AdminVideoController::class, 'showAddView'])->name('admin.video.add');
@@ -64,4 +66,5 @@ Route::get('admin/video/edit/{id}', [AdminVideoController::class, 'showEditView'
 Route::put('/video/{id}/update', [AdminVideoController::class, 'update'])->name('admin.video.update');
 Route::delete('/admin/video/{id}', [AdminVideoController::class, 'destroy'])->name('admin.video.destroy');
 
-//module
+//Plan Module
+

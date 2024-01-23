@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert; 
+use Illuminate\Support\Facades\Log;
+use DataTables;
 class AdminBusinessController extends Controller
 {
    /**
@@ -52,47 +54,60 @@ public function create()
  */
 public function store(Request $request)
 {
-    // Create a new Business model instance
-    $business = new Business();
+    try
+    {
+        // Create a new Business model instance
+        $business = new Business();
 
-    // Assign input values to the corresponding attributes
-    $business->name = $request->input('name');
-    $business->email = $request->input('email');
-    $business->website = $request->input('site');
-    $business->business_owner_name = $request->input('owner_name');
-    $business->phone = $request->input('phone1');
-    $business->phone2 = $request->input('phone2');
-    $business->zipcode = $request->input('zip_code');
-    $business->address = $request->input('address');
-    $business->how_old_ur_business = $request->input('how_old_ur_business');
-    $business->description = $request->input('description');
-    $business->hear_about_us = $request->input('about_us');
-    $business->category_id = $request->input('category');
-    $business->plan_id = $request->input('plan');
-    $business->business_industry = $request->input('business_industry');
-    $business->is_felony = $request->input('is_felony');
-    $business->country_id = $request->input('country');
-    $business->state = $request->input('state');
-    $business->city = $request->input('city');
+        // Assign input values to the corresponding attributes
+        $business->name = $request->input('name');
+        $business->email = $request->input('email');
+        $business->website = $request->input('site');
+        $business->business_owner_name = $request->input('owner_name');
+        $business->phone = $request->input('phone1');
+        $business->phone2 = $request->input('phone2');
+        $business->zipcode = $request->input('zip_code');
+        $business->address = $request->input('address');
+        $business->how_old_ur_business = $request->input('how_old_ur_business');
+        $business->description = $request->input('description');
+        $business->hear_about_us = $request->input('about_us');
+        $business->category_id = $request->input('category');
+        $business->plan_id = $request->input('plan');
+        $business->business_industry = $request->input('business_industry');
+        $business->is_felony = $request->input('is_felony');
+        $business->country_id = $request->input('country');
+        $business->state = $request->input('state');
+        $business->city = $request->input('city');
 
-    // Handle file upload for the business image
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $fileName = 'admin/business_image/' . $file->getClientOriginalName();
-        // Move the uploaded file to the public disk
-        $file->storeAs('public', $fileName);
-        // Update the image attribute with the file path
-        $business->image = $fileName;
+        // Handle file upload for the business image
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = 'admin/business_image/' . $file->getClientOriginalName();
+            // Move the uploaded file to the public disk
+            $file->storeAs('public', $fileName);
+            // Update the image attribute with the file path
+            $business->image = $fileName;
+        }
+
+        // Save the business to the database
+        $business->save();
+
+        // Show success message
+        Alert::success('Success', 'Business inserted successfully');
+
+        // Redirect to the business view page after successfully storing the business
+        return redirect()->route('admin.business-show')->with('success', 'Business inserted successfully');
+    }catch(\Exception $e)
+    {
+        // Log the exception with today's date in the daily log channel
+        Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
+        return redirect()->back()->with('error', $e->getMessage()); 
     }
 
-    // Save the business to the database
-    $business->save();
-
-    // Redirect to the business view page after successfully storing the business
-    return redirect(route('admin.business-show'));
 }
 
 
+  
   /**
  * Display a list of businesses.
  *
@@ -116,7 +131,6 @@ public function show()
     // Display the view with the list of businesses
     return view('admin.business.view', compact('businesses'));
 }
-
     /**
  * Display the form to edit a specific business.
  *
@@ -133,54 +147,134 @@ public function show()
  */
 public function edit($id)
 {
-    // Retrieve the business with the given ID
-    $busi = Business::find($id);
+    try {
+        // Retrieve the business with the given ID
+        $busi = Business::find($id);
 
-    // Fetch data for dropdowns: countries, categories, and plans
-    $data['countries'] = Country::all();
-    $data['categories'] = Category::all();
-    $data['plan'] = Plan::all();
+        // Fetch data for dropdowns: countries, categories, and plans
+        $data['countries'] = Country::all();
+        $data['categories'] = Category::all();
+        $data['plan'] = Plan::all();
 
-    // Display the edit view with the business data and dropdown options
-    return view('admin.business.edit', compact('busi'), $data);
-}
-
-public function update(Request $request,$id)
-{
-    $business = Business::find($id);
-    $business->name = $request->input('name');
-    $business->email = $request->input('email');
-    $business->website = $request->input('site');
-    $business->business_owner_name = $request->input('owner_name');
-    $business->phone = $request->input('phone1');
-    $business->phone2 = $request->input('phone2');
-    $business->zipcode = $request->input('zip_code');
-    $business->address = $request->input('address');
-    $business->how_old_ur_business = $request->input('how_old_ur_business');
-    $business->description = $request->input('description');
-    $business->hear_about_us = $request->input('about_us');
-    $business->category_id = $request->input('category');
-    $business->plan_id = $request->input('plan');
-    $business->business_industry = $request->input('business_industry');
-    $business->is_felony = $request->input('is_felony');
-    $business->country_id = $request->input('country');
-    $business->state = $request->input('state');
-    $business->city = $request->input('city');
-
-    // Handle file upload for the business image
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $fileName = 'admin/business_image/' . $file->getClientOriginalName();
-        // Move the uploaded file to the public disk
-        $file->storeAs('public', $fileName);
-        // Update the image attribute with the file path
-        $business->image = $fileName;
+        // Display the edit view with the business data and dropdown options
+        return view('admin.business.edit', compact('busi'), $data);
+    }catch(\Exception $e)
+    {
+        // Log the exception with today's date in the daily log channel
+        Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
+        return redirect()->back()->with('error', $e->getMessage()); 
     }
-
-    // Save the business to the database
-    $business->update();
-
-    // Redirect to the business view page after successfully storing the business
-    return redirect(route('admin.business-show'));
 }
+
+public function update(Request $request, $id)
+{
+    try
+    {
+        $business = Business::findOrFail($id);
+        $business->name = $request->input('name');
+        $business->email = $request->input('email');
+        $business->website = $request->input('site');
+        $business->business_owner_name = $request->input('owner_name');
+        $business->phone = $request->input('phone1');
+        $business->phone2 = $request->input('phone2');
+        $business->zipcode = $request->input('zip_code');
+        $business->address = $request->input('address');
+        $business->how_old_ur_business = $request->input('how_old_ur_business');
+        $business->description = $request->input('description');
+        $business->hear_about_us = $request->input('about_us');
+        $business->category_id = $request->input('category');
+        $business->plan_id = $request->input('plan');
+        $business->business_industry = $request->input('business_industry');
+        $business->is_felony = $request->input('is_felony');
+        $business->country_id = $request->input('country');
+        $business->state = $request->input('state');
+        $business->city = $request->input('city');
+
+        // Handle file upload for the business image
+        if ($request->hasFile('image')) {
+            // Unlink the old image if it exists
+            $oldImage = $business->image;
+            if (!empty($oldImage) && Storage::disk('public')->exists('business_image/' . $oldImage)) {
+                Storage::disk('public')->delete('business_image/' . $oldImage);
+            }
+
+            //store new image
+            $file = $request->file('image');
+            $fileName = 'admin/business_image/' . $file->getClientOriginalName();
+            // Move the uploaded file to the public disk
+            $file->storeAs('public', $fileName);
+            // Update the image attribute with the file path
+            $business->image = $fileName;
+        }
+
+        // Save the business to the database
+        $business->save();
+
+        // Show success message
+        Alert::success('Success', 'Business updated successfully');
+
+        // Redirect to the business view page after successfully storing the business
+        return redirect()->route('admin.business-show')->with('success', 'Business updated successfully');
+    }
+    catch(\Exception $e)
+    {
+        // Log the exception with today's date in the daily log channel
+        Log::channel('daily')->error('[' . now() . '] ' . $e->getMessage());
+        return redirect()->back()->with('error', $e->getMessage()); 
+    }
+}
+
+public function dataTable(Request $request)
+{
+    if ($request->ajax())
+    {
+        // Retrieve all user records
+        $data = Business::all();
+
+        return DataTables::of($data)
+        ->addColumn('country_name', function ($business) {
+            // Map user's country name or provide a default value
+            if ($business->country) {
+                return $business->country->name;
+            } else {
+                return 'null'; // Or any other default value you prefer
+            }
+        })
+        ->addColumn('image', function ($user) {
+            // Generate profile image URL or return null
+            if ($business->image) {
+                return asset('storage/app/public/business_image/' . $business->image);
+            } else {
+                return null;
+            }
+        })
+        ->toJson();
+    }
+}
+public function delete($id)
+{
+    try{
+        $business = Business::find($id);
+
+        if(!$business){
+            return redirect()->back()->with('error','Category not found');
+        }
+        if ($business->image) {
+            $imagePath = public_path('admin/business_image/') . $business->image;
+
+            if (file_exists($imagePath)) {
+                // Delete the image file
+                unlink($imagePath);
+            }
+        }
+        $business->delete();
+        return redirect()->back()->with('success','Business deleted successfully...');
+    }catch(\Exception $e)
+    {
+          // Handle the exception
+          return redirect()->back()->with("error",$e->getMessage());
+    }
+    
+}
+
 }
