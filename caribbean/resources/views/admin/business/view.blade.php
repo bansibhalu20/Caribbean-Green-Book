@@ -117,15 +117,6 @@
                                 <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="w-10px pe-2">
-                                            <div
-                                                class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                <input class="form-check-input" id="checkAll" type="checkbox"
-                                                    data-kt-check="true"
-                                                    data-kt-check-target="#kt_ecommerce_products_table .form-check-input"
-                                                    value="1" />
-                                            </div>
-                                        </th>
                                         <th class="min-w-50px ">Logo</th>
                                         <th class="min-w-100px">Business Name</th>
                                         <th class="min-w-100px">Owner</th>
@@ -140,35 +131,23 @@
                                 </thead>
                                 <!--end::Table head-->
                                 <tbody class="text-gray-600 fw-semibold">
-        @foreach($businesses as $business)
-            <tr>
-                <td>{{-- Display the logo, if applicable --}}</td>
-                <td>{{ $business->name }}</td>
-                <td>{{ $business->business_owner_name }}</td>
-                <td>{{ $business->email}}</td>
-                <td>{{ $business->phone}}</td>
-                <td>{{ $business->how_old_ur_business}}</td>
-                <td>{{ $business->business_industry}}</td>
-                <td>{{ $business->status }}</td>
-                <td>{{-- Action buttons, if applicable --}}</td>
-                <td></td>
-                <td><div class="dropdown menu-item px-3">
-                                <button class="btn btn-light btn-active-light-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown">Actions</button>
-                                <div class="dropdown-menu dropdown-menu-endmenu-item px-3">
-                                <div class="menu-item px-3">
-                                <a class=" menu-link px-3 text-gray-600 text-hover-primary" href="{{ route('admin.business-edit',['id'=>$business->id]) }}">Edit</a>
-                                </div>
-                                <div class="menu-item px-3">
-                                <form id="delete-form-' + full.id + '" action="business/destroy/
-                                '" method="POST">
-                                <a class="menu-link px-3 text-gray-600 text-hover-primary" onclick="showConfirmDialog(event)" data-product-id="' ">Delete</a>
-                                </form>
-                                </div>
-                                </div>
-                                </div></td>
-            </tr>
-        @endforeach
-    </tbody>
+                                @foreach($businesses as $business)
+                                    <tr>
+                                        <td>bansi</td>
+                                        <td>{{ $business->name }}</td>
+                                        <td>{{ $business->business_owner_name }}</td>
+                                        <td>{{ $business->email}}</td>
+                                        <td>{{ $business->phone}}</td>
+                                        <td>{{ $business->how_old_ur_business}}</td>
+                                        <td>{{ $business->business_industry}}</td>
+                                        <td>{{ $business->status }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.business-edit',['id'=>$business->id]) }}" class="btn-info btn btn-sm btn-icon"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.business-delete',['id' =>$business->id]) }}" class="btn-danger btn btn-sm btn-icon btn-delete"><i class="fas fa-trash-alt"></i></a></td>
+                                        </tr>
+                                    </tr>
+                                @endforeach
+                        </tbody>
                             </table>
                             <!--end::Table-->
                         </div>
@@ -187,4 +166,3 @@
 </div>
 </div>
 @endsection
-
