@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use DataTables;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -126,5 +127,26 @@ class AdminCategoryController extends Controller
               return redirect()->back()->with("error",$e->getMessage());
         }
         
+    }
+    public function dataTable()
+    {
+        $categories = Category::select(['id', 'title', 'image', 'description']);
+
+        return datatables()->of($categories)
+            ->addColumn('checkbox', function ($category) {
+                // Add checkbox HTML if needed
+                return '<input type="checkbox" value="'.$category->id.'">';
+            })
+            ->addColumn('image', function ($category) {
+                // Add image HTML if needed
+                return '<img src="'.asset('admin/category_image/'.$category->image).'" height="50px" width="50px" style="border-radius: 30px;" alt="Image">';
+            })
+            ->addColumn('actions', function ($category) {
+                // Add actions HTML (edit and delete buttons) if needed
+                return '<a href="'.route('admin.category-edit', ['id' => $category->id]).'" class="btn-info btn btn-sm btn-icon"><i class="fas fa-edit"></i></a>
+                        <a href="'.route('admin.category-delete', ['id' => $category->id]).'" class="btn-danger btn btn-sm btn-icon btn-delete"><i class="fas fa-trash-alt"></i></a>';
+            })
+            ->rawColumns(['checkbox', 'image', 'actions'])
+            ->toJson();
     }
 }

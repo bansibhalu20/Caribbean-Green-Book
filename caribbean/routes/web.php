@@ -42,18 +42,22 @@ Route::get('admin/view-category',[AdminCategoryController::class,'index'])->name
 Route::get('admin/addcate',[AdminCategoryController::class,'create'])->name('admin.addcate');
 Route::post('admin/add-cate',[AdminCategoryController::class,'store'])->name('admin.addcate-store');
 Route::get('admin/edit-cate/{id}',[AdminCategoryController::class,'editCategory'])->name('admin.category-edit');
-Route::put('admin.update-cate/{id}',[AdminCategoryController::class,'updateCategory'])->name('admin.category-update');
-Route::get('admin.delete-cate/{id}',[AdminCategoryController::class,'deleteCategory'])->name('admin.category-delete');
+Route::put('admin/update-cate/{id}',[AdminCategoryController::class,'updateCategory'])->name('admin.category-update');
+Route::get('admin/delete-cate/{id}',[AdminCategoryController::class,'deleteCategory'])->name('admin.category-delete');
+Route::get('admin/datatable',[AdminCategoryController::class,'dataTable'])->name('admin.category-dataTable');
 
 //Business Review Module
-Route::get('admin/busi-review',[AdminBusinessReviewController::class,'index'])->name('admin.busi-review');
+Route::get('admin/busi-review',[AdminBusinessReviewController::class,'create'])->name('admin.busi-review');
+Route::post('admin/busi-store',[AdminBusinessReviewController::class,'store'])->name('admin.busi-review-store');
 
 //Business Module
 Route::get('admin/business-create', [AdminBusinessController::class, 'create'])->name('admin.business-create');
 Route::post('admin/business-create',[AdminBusinessController::class,'store'])->name('admin.business-store');
 Route::get('admin/business-show', [AdminBusinessController::class, 'show'])->name('admin.business-show');
+Route::post('admin/business-dataTable',[AdminBusinessController::class, 'dataTable'])->name('admin.business-dataTable');
 Route::get('admin/business-edit/{id}',[AdminBusinessController::class,'edit'])->name('admin.business-edit');
 Route::put('admin/business-update/{id}',[AdminBusinessController::class,'update'])->name('admin.business-update');
+Route::get('admin.business-delete/{id}',[AdminBusinessController::class,'delete'])->name('admin.business-delete');
 
 //Video Module
 Route::get('admin/video-add', [AdminVideoController::class, 'showAddView'])->name('admin.video-add');

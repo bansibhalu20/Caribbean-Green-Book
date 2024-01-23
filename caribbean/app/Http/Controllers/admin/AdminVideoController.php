@@ -84,15 +84,6 @@ class AdminVideoController extends Controller
             return redirect()->back(); // Redirect back to the form 
         }
     }
-
-
-    public function getData()
-    {
-        $videos = Video::select(['id', 'title', 'image', 'link']);
-    
-        return response()->json(['data' => $videos->get()]);
-    }
-    
    
     public function showEditView($id)
     {
@@ -105,8 +96,6 @@ class AdminVideoController extends Controller
             return redirect()->back(); // Redirect back previous page 
         }
     }
-
-
 
     public function update(Request $request, $id)
     {
