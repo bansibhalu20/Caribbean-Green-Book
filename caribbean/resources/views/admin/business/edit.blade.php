@@ -138,13 +138,14 @@
                                     <!--end::Select store template-->
                                     <!--begin::Select2-->
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
-                                        data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
-                                        name="category" id="category">
-                                        <option value="{{$busi->Category->id}}">{{$busi->Category->title}}</option>
+                                            data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
+                                            name="category" id="category">
                                         @foreach($categories as $list1)
-                                            <option value="{{$list1->id}}">{{$list1->title}}</option>
+                                            <option value="{{$list1->id}}"{{ $list1->id == $busi->category_id ? 'selected' : '' }}>{{$list1->title}}</option>
                                         @endforeach
+
                                     </select>
+
                                     <!--end::Select2-->
                                     <!--begin::Description-->
                                     <div class="text-muted fs-7">Select category.</div>
@@ -162,7 +163,9 @@
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="plan" id="plan">
+                                        @if($busi->Plan)
                                         <option value="{{$busi->Plan->id}}">{{$busi->Plan->name}}</option>
+                                        @endif
                                         @foreach($plan as $list2)
                                             <option value="{{$list2->id}}">{{$list2->name}}</option>
                                         @endforeach
@@ -187,7 +190,8 @@
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="business_industry" id="business_industry">
-                                        <option value="1">bansi</option>
+                                        <option>{{$busi->business_industry}}</option>
+                                        <option></option>
                                     </select>
                                     <!--end::Select2-->
                                     <!--begin::Description-->
@@ -206,7 +210,8 @@
                                     <select class="form-select mb-2" data-control="select2" data-hide-search="true"
                                         data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select"
                                         name="is_felony" id="is_felony">
-                                        <option value='0'>bansi</option>
+                                        <option>{{$busi->is_felony}}</option>
+                                        <option value="yes">yes</option>
                                     </select>
                                     <!--end::Select2-->
                                     <!--begin::Description-->
@@ -229,9 +234,8 @@
                                     <!--begin::Select2-->
                                     <select class="form-control form-select" name="country" id="country"
                                         data-placeholder="Select a country">
-                                        <option value="{{$busi->Country->id}}">{{$busi->Country->name}}</option>
                                         @foreach($countries as $list)
-                                            <option value="{{$list->id}}">{{$list->name}}</option>
+                                            <option value="{{ $list->id }}"{{ $list->id == $busi->country_id ? 'selected' : '' }}>{{$list->name}}</option>
                                         @endforeach
                                     </select>
                                     <br>
@@ -260,7 +264,7 @@
                                     <!--begin::label user-->
                                     <label class="form-label manager-code required">Is caribbean owner?</label>
                                     <select class="form-control form-select" name="tax_type" id="state">
-                                        <option>{{$busi->is_caribbean->owned}}</option>
+                                        <option>{{$busi->is_caribbean_owned}}</option>
                                         <option value="yes">Yes</option>
                                         <option value="no">No</option>
                                     </select><br>
@@ -271,8 +275,8 @@
                                 <div class="card-body pt-0">
                                     <!--begin::label user-->
                                     <label class="form-label manager-code required">Status</label>
-                                    <select class="form-control form-select" name="tax_type" id="state">
-                                        <option value="">Select Option</option>
+                                    <select class="form-control form-select" name="status" id="state">
+                                        <option value="">{{$busi->status}}</option>
                                         <option value="active">active</option>
                                         <option value="inactive">inactive</option>
                                     </select><br>
@@ -286,17 +290,6 @@
                         <!--end::Aside column-->
                         <!--begin::Main column-->
                         <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-                            <!--begin:::Tabs-->
-                            <ul
-                                class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
-                                <!--begin:::Tab item-->
-                                <li class="nav-item">
-                                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab"
-                                        href="#kt_ecommerce_add_product_general">General</a>
-                                </li>
-                                <!--end:::Tab item-->
-                            </ul>
-                            <!--end:::Tabs-->
                             <!--begin::Tab content-->
                             <div class="tab-content">
                                 <!--begin::Tab pane-->
@@ -322,7 +315,7 @@
                                                     <!--begin::Input-->
                                                     <input type="text" name="name" id="name"
                                                         class="form-control mb-2" placeholder="Business name"
-                                                        value="" />
+                                                        value="{{$busi->name}}" />
                                                   
                                                     <!--end::Input-->
                                                     <!--begin::Description-->
@@ -339,7 +332,7 @@
                                                       <!--begin::Input-->
                                                       <input type="text" name="email" id="email"
                                                         class="form-control mb-2" placeholder="Business email"
-                                                        value="" />
+                                                        value="{{$busi->email}}" />
                                                     <span id="name-error"></span>
 
                                                     <!--end::Input-->
@@ -353,7 +346,7 @@
                                                     <label class="required form-label full-name required">Business
                                                         Site</label>
                                                     <input type="text" name="site" class="form-control mb-2"
-                                                        placeholder="Business Site" id="site">
+                                                        placeholder="Business Site" id="site" value="{{$busi->website}}">
                                                         <div class="text-muted fs-7">A business email is required and recommended
                                                         to be unique.</div>
                                                 </div><br><br>
@@ -362,7 +355,7 @@
                                                     <label class="required form-label full-name required">Business
                                                         Owner Name</label>
                                                         <input type="text" name="owner_name" class="form-control mb-2"
-                                                        placeholder="Business Owner Name" id="owner_name"/>
+                                                        placeholder="Business Owner Name" id="owner_name" value="{{$busi->business_owner_name}}"/>
                                                         <div class="text-muted fs-7">A business email is required and recommended
                                                         to be unique.</div>
                                                 </div>
@@ -389,7 +382,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
                                                     <input type="text" name="phone1" class="form-control mb-2"
-                                                        placeholder="Phone number" id="phone1" style="width: 100%;" />
+                                                        placeholder="Phone number" id="phone1" style="width: 100%;" value="{{$busi->phone}}"/>
                                                     <span id="phone-error"></span>
                                                     <!--end::Input-->
                                                 </div>
@@ -400,7 +393,7 @@
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
                                                     <input type="text" name="phone2" class="form-control mb-2"
-                                                        placeholder="Phone number" id="phone2" style="width: 100%;" />
+                                                        placeholder="Phone number" id="phone2" style="width: 100%;" {{$busi->phone2}}/>
                                                     <span id="phone-error"></span>
                                                     <!--end::Input-->
                                                 </div>
@@ -411,7 +404,7 @@
                                                     <!--begin::Input-->
                                                     <input type="text" name="zip_code" max="8" min="6"
                                                         class="form-control mb-2 zipcode_mask" placeholder="Zip Code"
-                                                        id="zipcode">
+                                                        id="zipcode" value="{{$busi->zipcode}}">
                                                     <span id="zipcode-error"></span>
                                                     <!--end::Input-->
                                                 </div>
@@ -421,7 +414,7 @@
                                                     <!--begin::Label-->
                                                     <label class="form-label required">Address</label>
                                                     <!--end::Label-->
-                                                    <textarea name="address" rows="1" cols="80" class="form-control mb-2"></textarea>
+                                                    <textarea name="address" rows="1" cols="80" class="form-control mb-2">{{$busi->address}}</textarea>
                                                 </div>
                                                 <!--end::Input group-->
                                             </div>
@@ -438,7 +431,7 @@
                                                     <label class="form-label manager-code required">How old your business?</label>
                                                     <input type="year" name="how_old_ur_business"
                                                         class="form-control mb-2 only-string-values"
-                                                        placeholder="How old your business?">
+                                                        placeholder="How old your business?" value="{{$busi->how_old_ur_business}}">
                                                     <!--begin::product quantity-->
                                                     <div class="text-muted fs-7">Enter the product purchased price.</div>
                                                     <!--end::product quantity-->
@@ -446,7 +439,7 @@
                                                 <div class="mb-10 fv-row">
                                                     <!--begin::Label-->
                                                     <label class="form-label full-name required">Description</label>
-                                                    <textarea name="description" rows="1" cols="80" class="form-control mb-2"></textarea>
+                                                    <textarea name="description" rows="1" cols="80" class="form-control mb-2">{{$busi->description}}</textarea>
                                                     <!--end::Input-->
                                                     <!--begin::product quantity-->
                                                     <div class="text-muted fs-7">Enter the product retail price.</div>
@@ -456,7 +449,7 @@
                                                 <div class="mb-10 fv-row">
                                                     <!--begin::Label-->
                                                     <label class="form-label full-name required">About Us</label>
-                                                    <textarea name="about_us" rows="1" cols="80" class="form-control mb-2"></textarea>
+                                                    <textarea name="about_us" rows="1" cols="80" class="form-control mb-2">{{$busi->hear_about_us}}</textarea>
                                                     <!--end::Input-->
                                                     <!--begin::product quantity-->
                                                     <div class="text-muted fs-7">Enter the product retail price.</div>
